@@ -1,0 +1,208 @@
+/*@import "lcdfont";*/
+
+@font-face{
+    font-family: 'lcdfont';
+    src: url('./lcdfont/ds-digit-webfont.woff'); /* IE9 Compat Modes */
+    src: url('./lcdfont/ds-digit-webfont.woff?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('./lcdfont/ds-digit-webfont.woff') format('woff'), /* Modern Browsers */
+    url('./lcdfont/ds-digit-webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('./lcdfont/ds-digit-webfont.woff') format('svg'); /* Legacy iOS */
+}
+html{
+    height: 90%;
+}
+body {
+    background: url('../image/bg.png') no-repeat;
+    font-family: '微软雅黑';
+    height: 100%;
+}
+.wrap{
+    width: 90%;
+    height: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.wrap .count{
+    height: 7.5%;
+}
+.wrap .count>ul{
+    display: flex;
+    justify-content: space-between;
+}
+.wrap .count>ul>li{
+    width: 30%;
+    height: 52px;
+    background: url("../image/qingdaobeizhan_29.png") no-repeat;
+    background-size: 100% 100%;
+}
+.wrap .count>ul> :nth-child(1) :nth-child(1){
+    font-size: 28px;
+    line-height: 36px;
+    color: red;
+    font-family: lcdfont;
+    text-align: center;
+}
+.wrap .count>ul> :nth-child(2) :nth-child(1),.wrap .count>ul> :nth-child(3) :nth-child(1){
+    font-size: 28px;
+    line-height: 36px;
+    color: #fbb03b;
+    font-family: lcdfont;
+    text-align: center;
+}
+.wrap .count>ul>li :nth-child(2){
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
+    transform: scale(0.9);
+}
+.wrap .jian{
+    height: 180px;
+    /*margin-top: 20px;*/
+    background: url('../image/qingdaobeizhan_33.png') no-repeat;
+    background-size: 100% 100%;
+}
+.wrap .jian>p{
+    font-size: 15px;
+    padding: 10px 10px;
+    color: #fff;
+    float: left;
+    position: relative;
+}
+.wrap .jian>p>img{
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    width: 150%;
+    height: 150%;
+    opacity: 0.6;
+}
+.wrap .jian>.jiank{
+    clear: left;
+    width: 90%;
+    height:128px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+.wrap .jian>.jiank>div{
+    position: relative;
+}
+.wrap .jian>.jiank>div>p{
+    position: absolute;
+    width: 100%;
+    background: rgba(10,10,10,.7);
+    color: #fff;
+    font-size: 12px;
+}
+.wrap .jian>.jiank> :nth-child(1){
+    width: 59%;
+}
+.wrap .jian>.jiank> :nth-child(2){
+    width: 40%;
+}
+.wrap .jian>.jiank>div>img{
+    width: 100%;
+    height: 100%;
+}
+.wrap .huan{
+    height: 11.6%;
+    /*margin-top: 20px;*/
+    background: url('../image/qingdaobeizhan_39.png') no-repeat;
+    background-size: 100% 100%;
+}
+.wrap .huan>p{
+    font-size: 15px;
+    padding: 10px 10px;
+    color: #fff;
+    float: left;
+    position: relative;
+}
+.wrap .huan>p>img{
+    position: absolute;
+    top: -10px;
+    left: -20px;
+    width: 150%;
+    height: 150%;
+    opacity: 0.6;
+}
+.wrap .huan>ul{
+    display: flex;
+    justify-content: space-around;
+    clear: both;
+}
+.wrap .huan>ul>li{
+    color: #fff;
+    font-size: 12px;
+}
+.wrap .huan>ul>li>div{
+    margin: 8px auto 10px;
+    box-sizing: border-box;
+}
+.wrap .huan>ul>li>.red_qiu{
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(to right, rgb(238,45,36),rgb(241,90,36),rgb(241,90,36));
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgba(238,45,36,.9);
+}
+.wrap .huan>ul>li>.yellow_qiu{
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(to right, rgb(247,154,30),rgb(252,238,30),rgb(252,238,30));
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgba(247,154,30,.9);
+}
+.wrap .huan>ul>li>.green_qiu{
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(to right, rgb(8,115,58),rgb(57,181,74),rgb(57,181,74));
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgba(8,115,58,.9);
+}
+.wrap .yi{
+    height: 318px;
+    /*margin-top: 20px;*/
+    background: url('../image/qingdaobeizhan_42.png') no-repeat;
+    background-size: 100% 100%;
+}
+.wrap .yi>p{
+    font-size: 15px;
+    padding: 14px 10px;
+    color: #fff;
+    float: left;
+    position: relative;
+    box-sizing: border-box;
+}
+.wrap .yi>p>img{
+    position: absolute;
+    top: -12px;
+    left: -20px;
+    width: 150%;
+    height: 145%;
+    opacity: 0.6;
+}
+.wrap .yi>:nth-child(2),.wrap .yi>:nth-child(4){
+    height: 130px;
+    clear: both;
+}
+.wrap .yi>img{
+    width: 100%;
+    transform: translate(0,-6px);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
