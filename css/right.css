@@ -9,17 +9,23 @@
     url('./lcdfont/ds-digit-webfont.woff') format('svg'); /* Legacy iOS */
 }
 html{
-    height: 90%;
+    height: 100%;
 }
 body {
     background: url('../image/bg.png') no-repeat;
     font-family: '微软雅黑';
     height: 100%;
+    position: relative;
 }
 .wrap{
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     width: 90%;
-    height: 100%;
-    margin: 20px auto;
+    height: 96%;
+    margin: auto;
     display: flex;
     flex-direction: column;
     justify-content: space-around;

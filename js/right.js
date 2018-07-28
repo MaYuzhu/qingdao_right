@@ -2,8 +2,15 @@
 
     line()
     bar()
+
     function line() {
         let lineDom = document.getElementById('diqu')
+        let myChartContainer = function () {
+	        lineDom.style.width = lineDom.innerWidth+'px'
+	        lineDom.style.height = lineDom.innerHeight+'px'
+        }
+	      myChartContainer()
+
         let myChart = echarts.init(lineDom)
         let option = {
             //提示框
@@ -116,8 +123,19 @@
         }
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option)
+        //浏览器大小改变时重置大小
+	      window.addEventListener('resize',function () {
+		        myChartContainer();
+		        myChart.resize();
+	      })
     }
     function bar() {
+	      let barDom = document.getElementById('riqi')
+	      let myChartContainer = function () {
+		      barDom.style.width = barDom.innerWidth+'px'
+		      barDom.style.height = barDom.innerHeight+'px'
+	      }
+	      myChartContainer()
         let myChart = echarts.init(document.getElementById('riqi'))
         let option = {
             //提示框
@@ -206,21 +224,29 @@
                     data: [20,30],
                     itemStyle: {
                         normal: {
-                            color: '#06beff',
-                            lineStyle: {
+	                        color: new echarts.graphic.LinearGradient(
+		                        1, 0, 0, 1,
+		                        [
+			                        {offset: 0, color: '#ffaf34'},
+			                        {offset: 0.3, color: '#efee31'},
+			                        {offset: 1, color: '#ff824b'}
+		                        ]
+	                        ),
+
+                            /*lineStyle: {
                                 color: '#06beff',
-                            },
-                            areaStyle:
-                                {type: 'default',
-                                    color: new echarts.graphic.LinearGradient(
-                                        0, 0, 0, 1,
-                                        [
-                                            {offset: 0, color: 'rgba(250,190,255,.9)'},
-                                            {offset: 0.5, color: 'rgba(250,190,255,.4)'},
-                                            {offset: 1, color: 'rgba(6,190,255,.1)'}
-                                        ]
-                                    )
-                                }
+                            },*/
+                          areaStyle:
+                            {type: 'default',
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: 'rgba(250,190,255,.9)'},
+                                        {offset: 0.5, color: 'rgba(250,190,255,.4)'},
+                                        {offset: 1, color: 'rgba(6,190,255,.1)'}
+                                    ]
+                                )
+                            }
                         },
 
                     },
@@ -229,7 +255,12 @@
         }
         // 使用刚指定的配置项和数据显示图表。
         myChart.setOption(option)
+	      window.addEventListener('resize',function () {
+		      myChartContainer();
+		      myChart.resize();
+	      })
     }
+
 
     let ajax1 = $.ajax({
         type: 'get',
