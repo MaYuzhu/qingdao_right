@@ -532,9 +532,9 @@ table.CodeRay td.code>pre{padding:0}
 </li>
 <li><a href="#_告警信息接口">2.2. 告警信息接口</a>
 <ul class="sectlevel3">
-<li><a href="#_获取所有站点的告警统计信息">2.2.1. 获取所有站点的告警统计信息</a></li>
-<li><a href="#_获取所有站点的环境监测设备告警信息">2.2.2. 获取所有站点的环境监测设备告警信息</a></li>
-<li><a href="#_获取所有站点告警信息详情">2.2.3. 获取所有站点告警信息详情</a></li>
+<li><a href="#_按站点分组获取告警信息统计">2.2.1. 按站点分组获取告警信息统计</a></li>
+<li><a href="#_按站点_设备类型分组获取告警信息">2.2.2. 按站点、设备类型分组获取告警信息</a></li>
+<li><a href="#_获取告警信息详情">2.2.3. 获取告警信息详情</a></li>
 <li><a href="#_按监测对象分组获取异常统计">2.2.4. 按监测对象分组获取异常统计</a></li>
 <li><a href="#_按时间分组获取异常统计">2.2.5. 按时间分组获取异常统计</a></li>
 </ul>
@@ -613,16 +613,24 @@ table.CodeRay td.code>pre{padding:0}
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">alarm/getAllProjectDeviceAlarmCount.shtml</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">获取所有站点的告警统计信息</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alarm/getDeviceAlarmGroupProjectCode.shtml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">按站点分组获取告警信息统计</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">alarm/getAllProjectEnvDeviceAlarm.shtml</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">获取所有站点的环境监测设备告警信息</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">按站点、设备类型分组获取告警信息</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">alarm/getAllProjectDeviceAlarmDetail.shtml</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">获取所有站点告警信息详情</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alarm/getDeviceAlarmDetail.shtml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">获取告警信息详情</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alarm/getDeviceAlarmGroupBuildCode.shtml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">按监测对象分组获取异常统计</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alarm/getDeviceAlarmGroupDate.shtml</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">按时间分组获取异常统计</p></td>
 </tr>
 </tbody>
 </table>
@@ -771,7 +779,7 @@ table.CodeRay td.code>pre{padding:0}
 <div class="sect2">
 <h3 id="_告警信息接口">2.2. 告警信息接口</h3>
 <div class="sect3">
-<h4 id="_获取所有站点的告警统计信息">2.2.1. 获取所有站点的告警统计信息</h4>
+<h4 id="_按站点分组获取告警信息统计">2.2.1. 按站点分组获取告警信息统计</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -786,7 +794,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>请求URL</p>
 <div class="listingblock">
 <div class="content">
-<pre>alarm/getAllProjectDeviceAlarmCount.shtml</pre>
+<pre>alarm/getDeviceAlarmGroupProjectCode.shtml</pre>
 </div>
 </div>
 </li>
@@ -873,7 +881,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>请求示例</p>
 <div class="listingblock">
 <div class="content">
-<pre>http://192.168.20.23:50001/zzcismp/alarm/getAllProjectDeviceAlarmCount.shtml</pre>
+<pre>http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupProjectCode.shtml</pre>
 </div>
 </div>
 </li>
@@ -904,7 +912,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_获取所有站点的环境监测设备告警信息">2.2.2. 获取所有站点的环境监测设备告警信息</h4>
+<h4 id="_按站点_设备类型分组获取告警信息">2.2.2. 按站点、设备类型分组获取告警信息</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -919,7 +927,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>请求URL</p>
 <div class="listingblock">
 <div class="content">
-<pre>alarm/getAllProjectEnvDeviceAlarm.shtml</pre>
+<pre>alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml</pre>
 </div>
 </div>
 </li>
@@ -1007,7 +1015,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>请求示例</p>
 <div class="listingblock">
 <div class="content">
-<pre>http://192.168.20.23:50001/zzcismp/alarm/getAllProjectEnvDeviceAlarm.shtml</pre>
+<pre>http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml</pre>
 </div>
 </div>
 </li>
@@ -1050,7 +1058,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 </div>
 <div class="sect3">
-<h4 id="_获取所有站点告警信息详情">2.2.3. 获取所有站点告警信息详情</h4>
+<h4 id="_获取告警信息详情">2.2.3. 获取告警信息详情</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1065,7 +1073,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>请求URL</p>
 <div class="listingblock">
 <div class="content">
-<pre>alarm/getAllProjectDeviceAlarmDetail.shtml</pre>
+<pre>alarm/getDeviceAlarmDetail.shtml</pre>
 </div>
 </div>
 </li>
@@ -1143,6 +1151,16 @@ table.CodeRay td.code>pre{padding:0}
 <td class="tableblock halign-left valign-top"><p class="tableblock">站点编码</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildname</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">监测对象名称</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildcode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">监测对象编码</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">alarm_reason</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">告警内容</p></td>
@@ -1159,7 +1177,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>请求示例</p>
 <div class="listingblock">
 <div class="content">
-<pre>http://192.168.20.23:50001/zzcismp/alarm/getAllProjectDeviceAlarmDetail.shtml</pre>
+<pre>http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmDetail.shtml</pre>
 </div>
 </div>
 </li>
@@ -1171,6 +1189,8 @@ table.CodeRay td.code>pre{padding:0}
     {
         <span class="key"><span class="delimiter">&quot;</span><span class="content">projname</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">青岛北站</span><span class="delimiter">&quot;</span></span>,
         <span class="key"><span class="delimiter">&quot;</span><span class="content">projcode</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">37020010</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">buildname</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">玻璃幕墙(内墙)</span><span class="delimiter">&quot;</span></span>,
+        <span class="key"><span class="delimiter">&quot;</span><span class="content">buildcode</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">3702B0002</span><span class="delimiter">&quot;</span></span>,
         <span class="key"><span class="delimiter">&quot;</span><span class="content">alarm_time</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">2018-07-25 12:05:00</span><span class="delimiter">&quot;</span></span>,
         <span class="key"><span class="delimiter">&quot;</span><span class="content">alarm_reason</span><span class="delimiter">&quot;</span></span>: <span class="string"><span class="delimiter">&quot;</span><span class="content">玻璃幕墙(内墙)倾角计玻璃幕墙(内墙)QJ1设备告警，原因是设备数据通信中断。请注意检修。</span><span class="delimiter">&quot;</span></span>
     }
@@ -1274,7 +1294,7 @@ table.CodeRay td.code>pre{padding:0}
 <p>请求示例</p>
 <div class="listingblock">
 <div class="content">
-<pre>http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupBuildcode.shtml?projectCode=37020010</pre>
+<pre>http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupBuildCode.shtml?projectCode=37020010</pre>
 </div>
 </div>
 </li>
@@ -1434,7 +1454,7 @@ table.CodeRay td.code>pre{padding:0}
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-07-27 17:29:50 CST
+Last updated 2018-07-27 17:54:34 CST
 </div>
 </div>
 </body>
