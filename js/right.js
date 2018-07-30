@@ -1,17 +1,19 @@
 (function (window) {
 
-    line()
-    bar()
-
-    function line() {
+    function line(json) {
         let lineDom = document.getElementById('diqu')
         let myChartContainer = function () {
 	        lineDom.style.width = lineDom.innerWidth+'px'
 	        lineDom.style.height = lineDom.innerHeight+'px'
         }
 	      myChartContainer()
-
         let myChart = echarts.init(lineDom)
+        let xData = []
+        let yData = []
+        for(let i=0;i<json.length;i++){
+            xData.push(json[i].buildname)
+            yData.push(json[i].num)
+        }
         let option = {
             //提示框
             tooltip: {
@@ -44,8 +46,8 @@
             xAxis: {
                 type : 'category',
                 show:true,
-                data:['1','2'],
-                boundaryGap : false,
+                data:xData,
+                boundaryGap : true,
                 axisTick: {
                     show: false
                 },
@@ -97,7 +99,7 @@
                     type: 'line',
                     stack:'健康情况',
                     barWidth: 12,
-                    data: [20,30],
+                    data: yData,
                     itemStyle: {
                         normal: {
                             color: '#06beff',
@@ -129,7 +131,7 @@
 		        myChart.resize();
 	      })
     }
-    function bar() {
+    function bar(json) {
 	      let barDom = document.getElementById('riqi')
 	      let myChartContainer = function () {
 		      barDom.style.width = barDom.innerWidth+'px'
@@ -137,6 +139,12 @@
 	      }
 	      myChartContainer()
         let myChart = echarts.init(document.getElementById('riqi'))
+        let xData = []
+        let yData = []
+        for(let i=0;i<json.length;i++){
+            xData.push(json[i].alarm_time.substring(5,10))
+            yData.push(json[i].num)
+        }
         let option = {
             //提示框
             tooltip: {
@@ -168,8 +176,8 @@
             xAxis: {
                 type : 'category',
                 show:true,
-                data:['1','2'],
-                boundaryGap : true,
+                data:xData,
+                boundaryGap : true,//距离y轴是否有空隙
                 axisTick: {
                     show: false
                 },
@@ -221,7 +229,7 @@
                     type: 'bar',
                     stack:'健康情况',
                     barWidth: 12,
-                    data: [20,30],
+                    data: yData,
                     itemStyle: {
                         normal: {
 	                        color: new echarts.graphic.LinearGradient(
@@ -261,7 +269,21 @@
 	      })
     }
 
-
+    function getNowFormatDate() {
+        var date = new Date(new Date()-6*24*3600*1000);
+        var seperator1 = "-";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    }
     let ajax1 = $.ajax({
         type: 'get',
         async: false,
@@ -279,7 +301,7 @@
             async: true,
             cache: true,
             data: {projectCode:37020010},
-            url: 'http://192.168.20.23:50001/zzcismp/alarm/getAllProjectDeviceAlarmCount.shtml',
+            url: 'http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupProjectCode.shtml',
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
@@ -300,24 +322,80 @@
             async: true,
             cache: true,
             data: {projectCode:37020010},
-            url: 'http://192.168.20.23:50001/zzcismp/alarm/getAllProjectEnvDeviceAlarm.shtml',
+            url: 'http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
-                if(json[0].alarm_info[2].level===0){
+                if(json[0].alarm_info[2]&&json[0].alarm_info[2].level===0){
                     $('.huan .wind').addClass('green_qiu')
-                }else if(json[0].alarm_info[2].level===1){
+                }else if(json[0].alarm_info[2]&&json[0].alarm_info[2].level===1){
                     $('.huan .wind').addClass('yellow_qiu')
-                }else {
+                }else if(json[0].alarm_info[2]&&json[0].alarm_info[2].level===2){
                     $('.huan .wind').addClass('red_qiu')
+                }else if(json[0].alarm_info[2]==undefined){
+                    $('.huan .shi').addClass('gray_qiu')
                 }//风力
-                if(json[0].alarm_info[3].level===0){
+                if(json[0].alarm_info[3]&&json[0].alarm_info[3].level===0){
                     $('.huan .wen').addClass('green_qiu')
-                }else if(json[0].alarm_info[2].level===1){
+                }else if(json[0].alarm_info[3]&&json[0].alarm_info[3].level===1){
                     $('.huan .wen').addClass('yellow_qiu')
-                }else {
+                }else if(json[0].alarm_info[3]&&json[0].alarm_info[3].level===2){
                     $('.huan .wen').addClass('red_qiu')
+                }else if(json[0].alarm_info[3]==undefined){
+                    $('.huan .shi').addClass('gray_qiu')
                 }//温度
+                if(json[0].alarm_info[4]&&json[0].alarm_info[4].level===0){
+                    $('.huan .shi').addClass('green_qiu')
+                }else if(json[0].alarm_info[4]&&json[0].alarm_info[4].level===1){
+                    $('.huan .shi').addClass('yellow_qiu')
+                }else if(json[0].alarm_info[4]&&json[0].alarm_info[4].level===2){
+                    $('.huan .shi').addClass('red_qiu')
+                }else if(json[0].alarm_info[4]==undefined){
+                    $('.huan .shi').addClass('gray_qiu')
+                }//湿度
+                if(json[0].alarm_info[5]&&json[0].alarm_info[5].level===0){
+                    $('.huan .yuliang').addClass('green_qiu')
+                }else if(json[0].alarm_info[5]&&json[0].alarm_info[5].level===1){
+                    $('.huan .yuliang').addClass('yellow_qiu')
+                }else if(json[0].alarm_info[5]&&json[0].alarm_info[5].level===2){
+                    $('.huan .yuliang').addClass('red_qiu')
+                }else if(json[0].alarm_info[5]==undefined){
+                    $('.huan .yuliang').addClass('gray_qiu')
+                }//雨量
+            },
+            error: function () {
+                // alert('fail');
+            }
+        })
+        //异常统计上
+        $.ajax({
+            type: 'get',
+            async: true,
+            cache: true,
+            data: {projectCode:37020010},
+            url: 'http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupBuildCode.shtml',
+            dataType: 'jsonp',
+            jsonp: "callback",
+            success: function (json) {
+                //console.log(json)
+                setTimeout(()=>{line(json)},0)
+            },
+            error: function () {
+                // alert('fail');
+            }
+        })
+        //异常统计下
+        $.ajax({
+            type: 'get',
+            async: true,
+            cache: true,
+            data: {projectCode:37020010,startDate:getNowFormatDate()},
+            url: 'http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupDate.shtml',
+            dataType: 'jsonp',
+            jsonp: "callback",
+            success: function (json) {
+                //console.log(json)
+                setTimeout(()=>{bar(json)},0)
             },
             error: function () {
                 // alert('fail');

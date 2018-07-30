@@ -167,6 +167,13 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 10px 1px rgba(8,115,58,.9);
 }
+.wrap .huan>ul>li>.gray_qiu{
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(to right, rgb(109, 109, 109), rgb(127, 127, 127),rgb(127, 127, 127));
+    border-radius: 50%;
+    box-shadow: 0 0 8px 1px rgba(109, 109, 109,.8);
+}
 .wrap .yi{
     height: 318px;
     /*margin-top: 20px;*/
@@ -196,6 +203,9 @@ body {
 .wrap .yi>img{
     width: 100%;
     transform: translate(0,-6px);
+}
+#diqu,#riqi{
+    background: url('../image/loading.gif') no-repeat center;
 }
 
 
