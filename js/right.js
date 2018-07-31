@@ -326,40 +326,40 @@
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
-                if(json[0].alarm_info[2]&&json[0].alarm_info[2].level===0){
+                if(json[0].alarm_info.filter(a=>a.type=='L')[0].level===1){
                     $('.huan .wind').addClass('green_qiu')
-                }else if(json[0].alarm_info[2]&&json[0].alarm_info[2].level===1){
+                }else if(json[0].alarm_info.filter(a=>a.type=='L')[0].level===2){
                     $('.huan .wind').addClass('yellow_qiu')
-                }else if(json[0].alarm_info[2]&&json[0].alarm_info[2].level===2){
+                }else if(json[0].alarm_info.filter(a=>a.type=='L')[0].level===3){
                     $('.huan .wind').addClass('red_qiu')
-                }else if(json[0].alarm_info[2]==undefined){
-                    $('.huan .shi').addClass('gray_qiu')
+                }else {
+                    $('.huan .wind').addClass('gray_qiu')
                 }//风力
-                if(json[0].alarm_info[3]&&json[0].alarm_info[3].level===0){
+                if(json[0].alarm_info.filter(a=>a.type=='T')[0].level===1){
                     $('.huan .wen').addClass('green_qiu')
-                }else if(json[0].alarm_info[3]&&json[0].alarm_info[3].level===1){
+                }else if(json[0].alarm_info.filter(a=>a.type=='T')[0].level===2){
                     $('.huan .wen').addClass('yellow_qiu')
-                }else if(json[0].alarm_info[3]&&json[0].alarm_info[3].level===2){
+                }else if(json[0].alarm_info.filter(a=>a.type=='T')[0].level===3){
                     $('.huan .wen').addClass('red_qiu')
-                }else if(json[0].alarm_info[3]==undefined){
-                    $('.huan .shi').addClass('gray_qiu')
+                }else {
+                    $('.huan .wen').addClass('gray_qiu')
                 }//温度
-                if(json[0].alarm_info[4]&&json[0].alarm_info[4].level===0){
+                if(json[0].alarm_info.filter(a=>a.type=='K')[0]&&json[0].alarm_info.filter(a=>a.type=='K')[0].level===1){
                     $('.huan .shi').addClass('green_qiu')
-                }else if(json[0].alarm_info[4]&&json[0].alarm_info[4].level===1){
+                }else if(json[0].alarm_info.filter(a=>a.type=='K')[0]&&json[0].alarm_info.filter(a=>a.type=='K')[0].level===2){
                     $('.huan .shi').addClass('yellow_qiu')
-                }else if(json[0].alarm_info[4]&&json[0].alarm_info[4].level===2){
+                }else if(json[0].alarm_info.filter(a=>a.type=='K')[0]&&json[0].alarm_info.filter(a=>a.type=='K')[0].level===3){
                     $('.huan .shi').addClass('red_qiu')
-                }else if(json[0].alarm_info[4]==undefined){
+                }else {
                     $('.huan .shi').addClass('gray_qiu')
                 }//湿度
-                if(json[0].alarm_info[5]&&json[0].alarm_info[5].level===0){
+                if(json[0].alarm_info.filter(a=>a.type=='F')[0]&&json[0].alarm_info.filter(a=>a.type=='F')[0].level===1){
                     $('.huan .yuliang').addClass('green_qiu')
-                }else if(json[0].alarm_info[5]&&json[0].alarm_info[5].level===1){
+                }else if(json[0].alarm_info.filter(a=>a.type=='F')[0]&&json[0].alarm_info.filter(a=>a.type=='F')[0].level===2){
                     $('.huan .yuliang').addClass('yellow_qiu')
-                }else if(json[0].alarm_info[5]&&json[0].alarm_info[5].level===2){
+                }else if(json[0].alarm_info.filter(a=>a.type=='F')[0]&&json[0].alarm_info.filter(a=>a.type=='F')[0].level===3){
                     $('.huan .yuliang').addClass('red_qiu')
-                }else if(json[0].alarm_info[5]==undefined){
+                }else {
                     $('.huan .yuliang').addClass('gray_qiu')
                 }//雨量
             },
