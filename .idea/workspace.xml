@@ -221,7 +221,7 @@
       <workItem from="1533106372906" duration="233000" />
       <workItem from="1533107113295" duration="7593000" />
       <workItem from="1533116581456" duration="14000" />
-      <workItem from="1533116723417" duration="35000" />
+      <workItem from="1533116723417" duration="136000" />
     </task>
     <task id="LOCAL-00001" summary="接口文档">
       <created>1532684102385</created>
@@ -265,11 +265,18 @@
       <option name="project" value="LOCAL" />
       <updated>1533116401243</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="搜狗图片大小兼容">
+      <created>1533116765964</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1533116765964</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="51732000" />
+    <option name="totallyTimeSpent" value="51833000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
