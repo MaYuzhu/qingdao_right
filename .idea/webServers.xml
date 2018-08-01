@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="d868da3e-15bd-41f3-9649-a529cb83f4cb" name="192.168.20.23" url="http://192.168.20.23">
+        <fileTransfer host="192.168.20.23" port="22" rootFolder="/data/tomcat_railway_9000/webapps/ROOT" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
