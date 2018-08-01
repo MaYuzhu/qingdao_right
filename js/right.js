@@ -1,5 +1,8 @@
 (function (window) {
-
+    //let url = 'http://192.168.20.23:50001'
+    let url = 'http://36.110.66.214:50001'
+    //console.log(100)
+    //alert(111000)
     function line(json) {
         let lineDom = document.getElementById('diqu')
         let myChartContainer = function () {
@@ -288,7 +291,7 @@
         type: 'get',
         async: false,
         cache: true,
-        url: 'http://192.168.20.23:50001/zzcismp/user/login.shtml?username=admin&password=123456',
+        url: url + '/zzcismp/user/login.shtml?username=admin&password=123456',
         dataType: 'jsonp',
         jsonp: "callback",
         success: function (json) {},
@@ -301,10 +304,11 @@
             async: true,
             cache: true,
             data: {projectCode:37020010},
-            url: 'http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupProjectCode.shtml',
+            url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCode.shtml',
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
+                //console.log(json)
                 $('.top_gao').text(json[0].data_warning_num>=0&&json[0].data_warning_num<10
                     ?'0'+json[0].data_warning_num:json[0].data_warning_num)
                 $('.top_yu').text(json[0].data_early_warning_num>=0&&json[0].data_early_warning_num<10
@@ -322,7 +326,7 @@
             async: true,
             cache: true,
             data: {projectCode:37020010},
-            url: 'http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
+            url: url + '/zzcismp/alarm/getDeviceAlarmGroupProjectCodeAndDeviceType.shtml',
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
@@ -373,7 +377,7 @@
             async: true,
             cache: true,
             data: {projectCode:37020010},
-            url: 'http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupBuildCode.shtml',
+            url: url + '/zzcismp/alarm/getDeviceAlarmGroupBuildCode.shtml',
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
@@ -390,7 +394,7 @@
             async: true,
             cache: true,
             data: {projectCode:37020010,startDate:getNowFormatDate()},
-            url: 'http://192.168.20.23:50001/zzcismp/alarm/getDeviceAlarmGroupDate.shtml',
+            url: url + '/zzcismp/alarm/getDeviceAlarmGroupDate.shtml',
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
