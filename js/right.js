@@ -27,7 +27,7 @@
             legend: {
                 itemWidth:12,
                 itemHeight:12,
-                x:240,
+                x:'80%',
                 y:-6,
                 textStyle:{//图例文字的样式
                     color:'#fff',
@@ -61,6 +61,7 @@
                 },
                 axisLabel:{
                     interval:0,
+                    rotate:40,
                     show:true,
                     color:'#fff',
                     textStyle: {
@@ -157,7 +158,7 @@
             legend: {
                 itemWidth:12,
                 itemHeight:12,
-                x:240,
+                x:'80%',
                 y:-6,
                 textStyle:{//图例文字的样式
                     color:'#fff',
@@ -191,6 +192,7 @@
                 },
                 axisLabel:{
                     interval:0,
+                    rotate:40,
                     show:true,
                     color:'#fff',
                     textStyle: {
