@@ -34,7 +34,7 @@
                     fontSize:12
                 },
                 data:[{
-                    name:'变形',
+                    name:'异常',
                     icon:'rect',
                     color:'red',
                 }],
@@ -99,7 +99,7 @@
             },
             series: [
                 {
-                    name: '变形',
+                    name: '异常',
                     type: 'line',
                     stack:'健康情况',
                     barWidth: 12,
@@ -165,7 +165,7 @@
                     fontSize:12
                 },
                 data:[{
-                    name:'变形',
+                    name:'异常',
                     icon:'rect',
                     color:'red',
                 }],
@@ -230,7 +230,7 @@
             },
             series: [
                 {
-                    name: '变形',
+                    name: '异常',
                     type: 'bar',
                     stack:'健康情况',
                     barWidth: 12,
@@ -274,6 +274,9 @@
 	      })
     }
 
+    /*window.addEventListener('resize',function () {
+        location.reload()
+    })*/
     function getNowFormatDate() {
         var date = new Date(new Date()-6*24*3600*1000);
         var seperator1 = "-";
@@ -402,6 +405,37 @@
             success: function (json) {
                 //console.log(json)
                 setTimeout(()=>{bar(json)},0)
+            },
+            error: function () {
+                // alert('fail');
+            }
+        })
+        //监控有问题的玻璃图片
+        $.ajax({
+            type: 'get',
+            async: true,
+            cache: true,
+            data: {projectCode:37020010},
+            url: url + '/zzcismp/alarm/getDeviceAlarmDetail.shtml',
+            dataType: 'jsonp',
+            jsonp: "callback",
+            success: function (json) {
+                let arrImage = []
+                for(let i=0;i<json.length;i++){
+                    //http://36.110.66.214:50001/zzcismp/pic/20180803152732.png
+                    if(json[i].img_url!==null){
+                        arrImage.push(json[i].img_url)
+                    }else{
+                        arrImage.push('/pic/20180803152732.png')
+                    }
+                }
+                for(let i=0;i<arrImage.length;i++){
+                    $('.swiper-slide')[i].innerHTML = `<img style='width:100%;height:128px;'
+                                src='http://36.110.66.214:50001/zzcismp${arrImage[i]}'>`
+                    //$('.swiper-pagination')[0].innerHTML += '<span class="swiper-pagination-bullet"></span>'
+                }
+
+
             },
             error: function () {
                 // alert('fail');
