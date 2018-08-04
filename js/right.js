@@ -1,8 +1,6 @@
 (function (window) {
     //let url = 'http://192.168.20.23:50001'
     let url = 'http://36.110.66.214:50001'
-    //console.log(100)
-    //alert(111000)
     function line(json) {
         let lineDom = document.getElementById('diqu')
         let myChartContainer = function () {
@@ -275,7 +273,7 @@
     }
 
     /*window.addEventListener('resize',function () {
-        location.reload()
+        location.reload()窗口大小改变强制刷新
     })*/
     function getNowFormatDate() {
         var date = new Date(new Date()-6*24*3600*1000);
@@ -434,8 +432,26 @@
                                 src='http://36.110.66.214:50001/zzcismp${arrImage[i]}'>`
                     //$('.swiper-pagination')[0].innerHTML += '<span class="swiper-pagination-bullet"></span>'
                 }
+	            var mySwiper = new Swiper ('.swiper-container', {
+		            direction: 'horizontal',
+		            loop: true,
 
+		            // 如果需要分页器
+		            pagination: {
+			            el: '.swiper-pagination',
+		            },
 
+		            // 如果需要前进后退按钮
+		            navigation: {
+			            nextEl: '.swiper-button-next',
+			            prevEl: '.swiper-button-prev',
+		            },
+
+		            // 如果需要滚动条
+		            scrollbar: {
+			            el: '.swiper-scrollbar',
+		            },
+	            })
             },
             error: function () {
                 // alert('fail');
