@@ -458,5 +458,17 @@
             }
         })
     })
+    //点击事件调用c/s函数
+    $('.count li').on('click',function () {
+        BtnClick()
+    })
+    function BtnClick (){
+        if (typeof jsEvent == "undefined") {
+            //alert("jsEvent参数未初始化")
+            return;
+        }
+        jsEvent.MessageText = "收到js消息";
+        jsEvent.ShowAlarmList();
+    }
 
 })(window)

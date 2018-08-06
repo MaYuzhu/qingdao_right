@@ -38,6 +38,7 @@ body {
     justify-content: space-between;
 }
 .wrap .count>ul>li{
+    cursor: pointer;
     width: 30%;
     height: 52px;
     background: url("../image/qingdaobeizhan_29.png") no-repeat;
