@@ -95,6 +95,14 @@ body {
     background-size: 40px 26px;
     width: 15px;
 }
+.wrap .jian>.jiank .swiper-pagination-bullet{
+    background: #999;
+    opacity: 0.4;
+}
+.wrap .jian>.jiank .swiper-pagination-bullet-active{
+    background: #007aff;
+    opacity: 1;
+}
 /*.wrap .jian>.jiank>div{
     position: relative;
 }
