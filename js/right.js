@@ -413,7 +413,7 @@
             type: 'get',
             async: true,
             cache: true,
-            data: {projectCode:37020010},
+            data: {projectCode:37020010,deviceType:'M'},
             url: url + '/zzcismp/alarm/getDeviceAlarmDetail.shtml',
             dataType: 'jsonp',
             jsonp: "callback",
@@ -428,9 +428,10 @@
                     }
                 }
                 for(let i=0;i<arrImage.length;i++){
-                    $('.swiper-slide')[i].innerHTML = `<img style='width:100%;height:128px;'
-                                src='http://36.110.66.214:50001/zzcismp${arrImage[i]}'>`
-                    //$('.swiper-pagination')[0].innerHTML += '<span class="swiper-pagination-bullet"></span>'
+                    /*$('.swiper-slide')[i].innerHTML = `<img style='width:100%;height:128px;'
+                                src='http://36.110.66.214:50001/zzcismp${arrImage[i]}'>`*/
+                    $('.swiper-wrapper').append(`<div class="swiper-slide"><img style='width:100%;height:128px;'
+                                src='http://36.110.66.214:50001/zzcismp${arrImage[i]}'></div>`)
                 }
 	            var mySwiper = new Swiper ('.swiper-container', {
 		            direction: 'horizontal',
