@@ -418,14 +418,11 @@
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
+                console.log(json)
                 let arrImage = []
-                for(let i=0;i<json.length;i++){
+                for(let i=0;i<json.data.length;i++){
                     //http://36.110.66.214:50001/zzcismp/pic/20180803152732.png
-                    if(json[i].img_url!==null){
-                        arrImage.push(json[i].img_url)
-                    }else{
-                        arrImage.push('/pic/20180803152732.png')
-                    }
+                    arrImage.push(json.data[i].img_url)
                 }
                 for(let i=0;i<arrImage.length;i++){
                     /*$('.swiper-slide')[i].innerHTML = `<img style='width:100%;height:128px;'
