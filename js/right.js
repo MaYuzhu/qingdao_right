@@ -418,7 +418,7 @@
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
-                console.log(json)
+                //console.log(json)
                 let arrImage = []
                 for(let i=0;i<json.data.length;i++){
                     //http://36.110.66.214:50001/zzcismp/pic/20180803152732.png
