@@ -204,6 +204,7 @@
           var arr = []
           var arrData = []
           var count = 1
+          var jiange = 165
           if(x==1){
               for(var a=0;a<data.length;a++){
                   var arr_m = []
@@ -217,6 +218,7 @@
                   arr.push(arr_m)
                   arrData.push(arrData_m)
               }
+              jiange = 198
           }else if(x==2){
               for(var a=0;a<data.length;a++){
                   var arr_m = []
@@ -230,6 +232,7 @@
                   arr.push(arr_m)
                   arrData.push(arrData_m)
               }
+              jiange = 198
           }else if(x==6){
               for(var a=0;a<data.length;a++){
                   var arr_m = []
@@ -243,6 +246,7 @@
                   arr.push(arr_m)
                   arrData.push(arrData_m)
               }
+              jiange = 165
           }
 
 
@@ -1071,7 +1075,7 @@
                       },
                       axisLabel: {
                           formatter: '{value}',
-                          interval:165,//隔几个显示刻度标签
+                          interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
                               color: '#666',
