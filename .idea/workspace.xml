@@ -30,14 +30,24 @@
       <file leaf-file-name="jsd.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/jsd.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="91" column="30" lean-forward="false" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
+            <state relative-caret-position="408">
+              <caret line="134" column="21" lean-forward="false" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
               <folding>
-                <element signature="e#6992#7665#0" expanded="false" />
-                <element signature="e#8395#8925#0" expanded="false" />
-                <element signature="e#8938#9467#0" expanded="false" />
-                <element signature="e#8984#9428#0" expanded="false" />
-                <element signature="e#9526#9970#0" expanded="false" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#6957#7630#0" expanded="false" />
+                <element signature="e#8360#8890#0" expanded="false" />
+                <element signature="e#8903#9432#0" expanded="false" />
+                <element signature="e#8949#9393#0" expanded="false" />
+                <element signature="e#9491#9935#0" expanded="false" />
+                <element signature="e#10002#14241#0" expanded="false" />
+                <element signature="e#14267#18506#0" expanded="false" />
+                <element signature="e#18532#22771#0" expanded="false" />
+                <element signature="e#22797#27036#0" expanded="false" />
+                <element signature="e#27062#31301#0" expanded="false" />
+                <element signature="e#31327#35566#0" expanded="false" />
+                <element signature="e#35592#39831#0" expanded="false" />
+                <element signature="e#39857#44096#0" expanded="false" />
+                <element signature="e#40365#40416#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -46,7 +56,7 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-366">
+            <state relative-caret-position="768">
               <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
               <folding />
             </state>
@@ -56,7 +66,7 @@
       <file leaf-file-name="right.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/js/right.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
+            <state relative-caret-position="2664">
               <caret line="468" column="32" lean-forward="true" selection-start-line="468" selection-start-column="32" selection-end-line="468" selection-end-column="32" />
               <folding>
                 <element signature="e#510#599#0" expanded="false" />
@@ -151,8 +161,8 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -297,7 +307,8 @@
       <workItem from="1534822297983" duration="110000" />
       <workItem from="1534902628477" duration="682000" />
       <workItem from="1535091658466" duration="2191000" />
-      <workItem from="1535332048800" duration="14996000" />
+      <workItem from="1535332048800" duration="16274000" />
+      <workItem from="1535353617110" duration="616000" />
     </task>
     <task id="LOCAL-00001" summary="接口文档">
       <created>1532684102385</created>
@@ -425,22 +436,29 @@
       <option name="project" value="LOCAL" />
       <updated>1535102257457</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="根据浏览器参数显示不同的通道">
+      <created>1535350632047</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1535350632048</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90197000" />
+    <option name="totallyTimeSpent" value="92091000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12660669" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12596402" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12724936" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37012112" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14535666" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14401077" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3526245" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -495,7 +513,8 @@
     <MESSAGE value="玻璃图片调用接口及参数" />
     <MESSAGE value="玻璃图片调用接口数据结构有变化" />
     <MESSAGE value="加速度计" />
-    <option name="LAST_COMMIT_MESSAGE" value="加速度计" />
+    <MESSAGE value="根据浏览器参数显示不同的通道" />
+    <option name="LAST_COMMIT_MESSAGE" value="根据浏览器参数显示不同的通道" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -961,7 +980,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-366">
+        <state relative-caret-position="768">
           <caret line="32" column="0" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
         </state>
@@ -969,7 +988,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/right.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
+        <state relative-caret-position="2664">
           <caret line="468" column="32" lean-forward="true" selection-start-line="468" selection-start-column="32" selection-end-line="468" selection-end-column="32" />
           <folding>
             <element signature="e#510#599#0" expanded="false" />
@@ -985,14 +1004,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/jsd.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="91" column="30" lean-forward="false" selection-start-line="91" selection-start-column="30" selection-end-line="91" selection-end-column="30" />
+        <state relative-caret-position="408">
+          <caret line="134" column="21" lean-forward="false" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
           <folding>
-            <element signature="e#6992#7665#0" expanded="false" />
-            <element signature="e#8395#8925#0" expanded="false" />
-            <element signature="e#8938#9467#0" expanded="false" />
-            <element signature="e#8984#9428#0" expanded="false" />
-            <element signature="e#9526#9970#0" expanded="false" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#6957#7630#0" expanded="false" />
+            <element signature="e#8360#8890#0" expanded="false" />
+            <element signature="e#8903#9432#0" expanded="false" />
+            <element signature="e#8949#9393#0" expanded="false" />
+            <element signature="e#9491#9935#0" expanded="false" />
+            <element signature="e#10002#14241#0" expanded="false" />
+            <element signature="e#14267#18506#0" expanded="false" />
+            <element signature="e#18532#22771#0" expanded="false" />
+            <element signature="e#22797#27036#0" expanded="false" />
+            <element signature="e#27062#31301#0" expanded="false" />
+            <element signature="e#31327#35566#0" expanded="false" />
+            <element signature="e#35592#39831#0" expanded="false" />
+            <element signature="e#39857#44096#0" expanded="false" />
+            <element signature="e#40365#40416#0" expanded="false" />
           </folding>
         </state>
       </provider>
