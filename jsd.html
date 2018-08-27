@@ -9,6 +9,7 @@
           border: 1px solid #ddd;
           margin: 5px;
           min-width: 500px;
+          padding-bottom: 20px;
       }
       .title{
           background: #c3e8f2;
@@ -59,19 +60,24 @@
           color: #666;
       }
       .c1 p{
-          width: 30%;
+          position: absolute;
+          top: -22px;
+          left: 15%;
+          color: #666;
+          padding: 0;
           margin: 0;
-          text-align: center;
       }
+
       #box8,#box1{
           width: 96.5%;
           height: 80px;
       }
-      #box7,#box6,#box5,#box4,#box3,#box2{
+      #box8,#box1,#box7,#box6,#box5,#box4,#box3,#box2{
           width: 96.5%;
-          height: 40px;
-          /*border: 1px solid #999;*/
+          height: 50px;
+          margin-bottom: -10px;
       }
+
     </style>
 </head>
 <body>
@@ -79,22 +85,26 @@
     <p class="title">加速度计</p>
     <div class="content">
         <ul>
-            <li>5秒</li>
+            <li class="on">5秒</li>
             <li>10秒</li>
-            <li class="on">30秒</li>
+            <li>30秒</li>
         </ul>
-        <div style="padding: 40px 0 0 0">
+        <div style="padding: 50px 0 0 0">
             <!--<span class="danwei">(m/s²)</span>-->
             <div class="c1">
                 <!--<p>加速度计8 <span style="color: #999">————</span></p>-->
-                <div id="box8"></div>
-                <div id="box7"></div>
-                <div id="box6"></div>
-                <div id="box5"></div>
-                <div id="box4"></div>
-                <div id="box3"></div>
-                <div id="box2"></div>
-                <div id="box1"></div>
+                <p>(m/s²)</p>
+                <div class="box">
+                    <div id="box8"></div>
+                    <div id="box7"></div>
+                    <div id="box6"></div>
+                    <div id="box5"></div>
+                    <div id="box4"></div>
+                    <div id="box3"></div>
+                    <div id="box2"></div>
+                    <div id="box1"></div>
+                </div>
+
                 <span>(s)</span>
             </div>
         </div>
@@ -104,22 +114,83 @@
   <script type="text/javascript" src="./js/echarts.min.js"></script>
   <script>
       var url = 'http://36.110.66.214:50001'
-      var flag = 6
+      var flag = 1
+
+      //根据url参数显示不同的通道
+      ;(function($){
+          $.getUrlParam = function(name)
+          {
+              var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+              var r = window.location.search.substr(1).match(reg);
+              if (r!=null) return unescape(r[2]); return null;
+          }
+      })(jQuery);
+      $(function(){
+          for(var i=0;i<$('.c1>.box>div').length;i++){
+              $('.c1>.box>div')[i].style.display = 'none'
+          }
+          var n = Number($.getUrlParam('channel'))
+
+          switch (n){
+              case 1:
+                  console.log(100)
+                  $('#box8').css('display','block')
+                  break;
+              case 2:
+                  $('#box7').css('display','block')
+                  break;
+              case 3:
+                  $('#box6').css('display','block')
+                  break;
+              case 4:
+                  $('#box5').css('display','block')
+                  break;
+              case 5:
+                  $('#box4').css('display','block')
+                  break;
+              case 6:
+                  $('#box3').css('display','block')
+                  break;
+              case 7:
+                  $('#box2').css('display','block')
+                  break;
+              case 8:
+                  $('#box1').css('display','block')
+                  break;
+              case 0:
+                  for(var i=0;i<$('.c1>.box>div').length;i++){
+                      $('.c1>.box>div')[i].style.display = 'block'
+                  }
+                  break;
+              default:
+                  for(var i=0;i<$('.c1>.box>div').length;i++){
+                      $('.c1>.box>div')[i].style.display = 'block'
+                  }
+          }
+
+      })
+
       for(let i=0;i<$('.content ul li').length;i++){
           $('.content ul li')[i].addEventListener('click',function () {
-              for(let i=0;i<$('.content ul li').length;i++){
-                  $('.content ul li')[i].classList.remove('on')
+              for(let j=0;j<$('.content ul li').length;j++){
+                  $('.content ul li')[j].classList.remove('on')
               }
               $('.content ul li')[i].classList.add('on')
               if(i==0){
                   flag = 1
-                  ajax2(flag)
+                  $.when(ajax1).done(function () {
+                      ajax2(flag)
+                  })
               }else if(i==1){
                   flag = 2
-                  ajax2(flag)
+                  $.when(ajax1).done(function () {
+                      ajax2(flag)
+                  })
               }else if(i==2){
                   flag = 6
-                  ajax2(flag)
+                  $.when(ajax1).done(function () {
+                      ajax2(flag)
+                  })
               }
           })
       }
@@ -131,10 +202,7 @@
           }, 10000)
       }
       b()*/
-      setTimeout(function(){
-          ajax2(flag)
-          setTimeout(arguments.callee,10000);
-      },10000)
+
 
       var arrAll = []
 
@@ -151,6 +219,14 @@
       $.when(ajax1).done(function () {
           ajax2(flag)
       })
+
+      setTimeout(function(){
+
+          ajax2(flag)
+
+          setTimeout(arguments.callee,10000);
+      },10000)
+
       function ajax2(x) {
           $.ajax({
               type: 'get',
@@ -251,11 +327,12 @@
 
 
           var option08 = {
+              backgroundColor: '#fff',//背景色
               title:[
                   {
                       text:data[0].devname,
                       left:'7%',
-                      top:'58%',
+                      top:'10%',
                       textAlign:'center',
                       textStyle:{
                           fontSize:12
@@ -263,7 +340,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'30%',top:'58%',},
+                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
                   trigger: 'axis'
@@ -282,10 +359,12 @@
                           show: false
                       },
                       axisLabel: {
-                          show: false,
+                          formatter: '{value}',
+                          interval:jiange,//隔几个显示刻度标签
+                          show: true,
                           textStyle: {
-                              color: '#089',
-                              fontSize:'16'
+                              color: '#666',
+                              fontSize:'12'
                           }
                       },
                       data: arr[0]
@@ -294,7 +373,7 @@
               yAxis:[
                   {
                       gridIndex:0,
-                      name: '(m/s²)',
+                      //name: '(m/s²)',
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
@@ -368,684 +447,10 @@
                   },
           }
           var option07 = {
+              backgroundColor: '#fff',//背景色
               title:[
                   {
                       text:data[1].devname,
-                      left:'7%',
-                      top:'20%',
-                      textAlign:'center',
-                      textStyle:{
-                          fontSize:12
-                      }
-                  },
-              ],
-              grid:[
-                  {x:'18%',y:'1%',width:'80%',height:'60%',top:'20%',},
-              ],
-              tooltip: {
-                  trigger: 'axis'
-              },
-              xAxis:[
-                  {
-                      gridIndex:0,
-                      axisLine: {
-                          show: false
-                      },
-                      boundaryGap : false,
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      splitLine: {     //网格线
-                          show: false
-                      },
-                      axisLabel: {
-                          show: false,
-                          textStyle: {
-                              color: '#089',
-                              fontSize:'16'
-                          }
-                      },
-                      data:arr[1]
-                  },
-              ],
-              yAxis:[
-                  {
-                      gridIndex:0,
-                      nameTextStyle:{
-                          color:'#666'//y轴name颜色
-                      },
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                      axisLabel : {
-                          formatter: '{value}',
-                          textStyle: {
-                              color: '#999'
-                          }
-                      }
-                  },
-                  {
-                      gridIndex:0,
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                  }
-              ],
-              series:
-                  {//#b9322a
-                      symbol: "none",
-                      name:'加速度计7',
-                      type:'line',
-                      stack: '1',
-                      xAxisIndex:0,
-                      yAxisIndex:0,
-                      itemStyle: {
-                          normal: {
-                              //color: "#2ec7c9",圆点颜色
-                              lineStyle: {
-                                  color: "#b9322a"
-                              }
-                          }
-                      },
-                      data:arrData[1]
-                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
-                  },
-          }
-          var option06 = {
-              title:[
-                  {
-                      text:data[2].devname,
-                      left:'7%',
-                      top:'20%',
-                      textAlign:'center',
-                      textStyle:{
-                          fontSize:12
-                      }
-                  },
-              ],
-              grid:[
-                  {x:'18%',y:'1%',width:'80%',height:'60%',top:'20%',},
-              ],
-              tooltip: {
-                  trigger: 'axis'
-              },
-              xAxis:[
-                  {
-                      gridIndex:0,
-                      axisLine: {
-                          show: false
-                      },
-                      boundaryGap : false,
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      splitLine: {     //网格线
-                          show: false
-                      },
-                      axisLabel: {
-                          show: false,
-                          textStyle: {
-                              color: '#089',
-                              fontSize:'16'
-                          }
-                      },
-                      data:arr[2]
-                  },
-              ],
-              yAxis:[
-                  {
-                      gridIndex:0,
-                      name: '(m/s²)',
-                      //boundaryGap:['80%', '80%'],
-                      //data:[-0.006,0.006],
-                      nameTextStyle:{
-                          color:'#666'//y轴name颜色
-                      },
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                      axisLabel : {
-                          formatter: '{value}',
-                          textStyle: {
-                              color: '#999'
-                          }
-                      }
-                  },
-                  {
-                      gridIndex:0,
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                  }
-              ],
-              series:
-                  {//#b9322a
-                      symbol: "none",
-                      name:'加速度计6',
-                      type:'line',
-                      stack: '1',
-                      xAxisIndex:0,
-                      yAxisIndex:0,
-                      itemStyle: {
-                          normal: {
-                              //color: "#2ec7c9",圆点颜色
-                              lineStyle: {
-                                  color: "#b9322a"
-                              }
-                          }
-                      },
-                      data:arrData[2]
-                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
-                  },
-          }
-          var option05 = {
-              title:[
-                  {
-                      text:data[3].devname,
-                      left:'7%',
-                      top:'20%',
-                      textAlign:'center',
-                      textStyle:{
-                          fontSize:12
-                      }
-                  },
-              ],
-              grid:[
-                  {x:'18%',y:'1%',width:'80%',height:'60%',top:'20%',},
-              ],
-              tooltip: {
-                  trigger: 'axis'
-              },
-              xAxis:[
-                  {
-                      gridIndex:0,
-                      axisLine: {
-                          show: false
-                      },
-                      boundaryGap : false,
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      splitLine: {     //网格线
-                          show: false
-                      },
-                      axisLabel: {
-                          show: false,
-                          textStyle: {
-                              color: '#089',
-                              fontSize:'16'
-                          }
-                      },
-                      data:arr[3]
-                  },
-              ],
-              yAxis:[
-                  {
-                      gridIndex:0,
-                      name: '(m/s²)',
-                      //boundaryGap:['80%', '80%'],
-                      //data:[-0.006,0.006],
-                      nameTextStyle:{
-                          color:'#666'//y轴name颜色
-                      },
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                      axisLabel : {
-                          formatter: '{value}',
-                          textStyle: {
-                              color: '#999'
-                          }
-                      }
-                  },
-                  {
-                      gridIndex:0,
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                  }
-              ],
-              series:
-                  {//#b9322a
-                      symbol: "none",
-                      name:'加速度计5',
-                      type:'line',
-                      stack: '1',
-                      xAxisIndex:0,
-                      yAxisIndex:0,
-                      itemStyle: {
-                          normal: {
-                              //color: "#2ec7c9",圆点颜色
-                              lineStyle: {
-                                  color: "#b9322a"
-                              }
-                          }
-                      },
-                      data:arrData[3]
-                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
-                  },
-          }
-          var option04 = {
-              title:[
-                  {
-                      text:data[4].devname,
-                      left:'7%',
-                      top:'20%',
-                      textAlign:'center',
-                      textStyle:{
-                          fontSize:12
-                      }
-                  },
-              ],
-              grid:[
-                  {x:'18%',y:'1%',width:'80%',height:'60%',top:'20%',},
-              ],
-              tooltip: {
-                  trigger: 'axis'
-              },
-              xAxis:[
-                  {
-                      gridIndex:0,
-                      axisLine: {
-                          show: false
-                      },
-                      boundaryGap : false,
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      splitLine: {     //网格线
-                          show: false
-                      },
-                      axisLabel: {
-                          show: false,
-                          textStyle: {
-                              color: '#089',
-                              fontSize:'16'
-                          }
-                      },
-                      data:arr[4]
-                  },
-              ],
-              yAxis:[
-                  {
-                      gridIndex:0,
-                      name: '(m/s²)',
-                      //boundaryGap:['80%', '80%'],
-                      //data:[-0.006,0.006],
-                      nameTextStyle:{
-                          color:'#666'//y轴name颜色
-                      },
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                      axisLabel : {
-                          formatter: '{value}',
-                          textStyle: {
-                              color: '#999'
-                          }
-                      }
-                  },
-                  {
-                      gridIndex:0,
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                  }
-              ],
-              series:
-                  {//#b9322a
-                      symbol: "none",
-                      name:'加速度计4',
-                      type:'line',
-                      stack: '1',
-                      xAxisIndex:0,
-                      yAxisIndex:0,
-                      itemStyle: {
-                          normal: {
-                              //color: "#2ec7c9",圆点颜色
-                              lineStyle: {
-                                  color: "#b9322a"
-                              }
-                          }
-                      },
-                      data:arrData[4]
-                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
-                  },
-          }
-          var option03 = {
-              title:[
-                  {
-                      text:data[5].devname,
-                      left:'7%',
-                      top:'20%',
-                      textAlign:'center',
-                      textStyle:{
-                          fontSize:12
-                      }
-                  },
-              ],
-              grid:[
-                  {x:'18%',y:'1%',width:'80%',height:'60%',top:'20%',},
-              ],
-              tooltip: {
-                  trigger: 'axis'
-              },
-              xAxis:[
-                  {
-                      gridIndex:0,
-                      axisLine: {
-                          show: false
-                      },
-                      boundaryGap : false,
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      splitLine: {     //网格线
-                          show: false
-                      },
-                      axisLabel: {
-                          show: false,
-                          textStyle: {
-                              color: '#089',
-                              fontSize:'16'
-                          }
-                      },
-                      data:arr[5]
-                  },
-              ],
-              yAxis:[
-                  {
-                      gridIndex:0,
-                      name: '(m/s²)',
-                      //boundaryGap:['80%', '80%'],
-                      //data:[-0.006,0.006],
-                      nameTextStyle:{
-                          color:'#666'//y轴name颜色
-                      },
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                      axisLabel : {
-                          formatter: '{value}',
-                          textStyle: {
-                              color: '#999'
-                          }
-                      }
-                  },
-                  {
-                      gridIndex:0,
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                  }
-              ],
-              series:
-                  {//#b9322a
-                      symbol: "none",
-                      name:'加速度计3',
-                      type:'line',
-                      stack: '1',
-                      xAxisIndex:0,
-                      yAxisIndex:0,
-                      itemStyle: {
-                          normal: {
-                              //color: "#2ec7c9",圆点颜色
-                              lineStyle: {
-                                  color: "#b9322a"
-                              }
-                          }
-                      },
-                      data:arrData[5]
-                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
-                  },
-          }
-          var option02 = {
-              title:[
-                  {
-                      text:data[6].devname,
-                      left:'7%',
-                      top:'20%',
-                      textAlign:'center',
-                      textStyle:{
-                          fontSize:12
-                      }
-                  },
-              ],
-              grid:[
-                  {x:'18%',y:'1%',width:'80%',height:'60%',top:'20%',},
-              ],
-              tooltip: {
-                  trigger: 'axis'
-              },
-              xAxis:[
-                  {
-                      gridIndex:0,
-                      axisLine: {
-                          show: false
-                      },
-                      boundaryGap : false,
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      splitLine: {     //网格线
-                          show: false
-                      },
-                      axisLabel: {
-                          show: false,
-                          textStyle: {
-                              color: '#089',
-                              fontSize:'16'
-                          }
-                      },
-                      data:arr[6]
-                  },
-              ],
-              yAxis:[
-                  {
-                      gridIndex:0,
-                      name: '(m/s²)',
-                      //boundaryGap:['80%', '80%'],
-                      //data:[-0.006,0.006],
-                      nameTextStyle:{
-                          color:'#666'//y轴name颜色
-                      },
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                      axisLabel : {
-                          formatter: '{value}',
-                          textStyle: {
-                              color: '#999'
-                          }
-                      }
-                  },
-                  {
-                      gridIndex:0,
-                      min:'dataMin',
-                      max:'dataMax',
-                      splitNumber:1,   //刻度分割段数，默认值为5
-                      interval:1,        //强制分割间隔
-                      splitLine: {     //网格线
-                          show: true
-                      },
-                      axisTick:{       //刻度线
-                          show:false
-                      },
-                      axisLine:{
-                          lineStyle:{
-                              color:'#ccc',
-                              width:1,//这里是为了突出显示加上的
-                          }
-                      },
-                  }
-              ],
-              series:
-                  {//#b9322a
-                      symbol: "none",
-                      name:'加速度计2',
-                      type:'line',
-                      stack: '1',
-                      xAxisIndex:0,
-                      yAxisIndex:0,
-                      itemStyle: {
-                          normal: {
-                              //color: "#2ec7c9",圆点颜色
-                              lineStyle: {
-                                  color: "#b9322a"
-                              }
-                          }
-                      },
-                      data:arrData[6]
-                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
-                  },
-          }
-          var option01 = {
-              title:[
-                  {
-                      text:data[7].devname,
                       left:'7%',
                       top:'10%',
                       textAlign:'center',
@@ -1055,7 +460,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'1%',width:'80%',height:'30%',top:'10%',},
+                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
                   trigger: 'axis'
@@ -1082,12 +487,13 @@
                               fontSize:'12'
                           }
                       },
-                      data:arr[7]
+                      data: arr[1]
                   },
               ],
               yAxis:[
                   {
                       gridIndex:0,
+                      //name: '(m/s²)',
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
@@ -1098,7 +504,10 @@
                       splitNumber:1,   //刻度分割段数，默认值为5
                       interval:1,        //强制分割间隔
                       splitLine: {     //网格线
-                          show: true
+                          show: true,
+                          lineStyle:{
+                              color:'#ccc'
+                          }
                       },
                       axisTick:{       //刻度线
                           show:false
@@ -1117,7 +526,7 @@
                       }
                   },
                   {
-                      gridIndex:0,
+                      gridIndex:0,   //双y轴
                       min:'dataMin',
                       max:'dataMax',
                       splitNumber:1,   //刻度分割段数，默认值为5
@@ -1139,7 +548,727 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计1',
+                      name:'加速度计8',
+                      type:'line',
+                      stack: '1',
+                      xAxisIndex:0,
+                      yAxisIndex:0,
+                      itemStyle: {
+                          normal: {
+                              //color: "#2ec7c9",圆点颜色
+                              lineStyle: {
+                                  color: "#b9322a"
+                              }
+                          }
+                      },
+                      data:arrData[1]
+                      //data[0].data
+                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
+                  },
+          }
+          var option06 = {
+              backgroundColor: '#fff',//背景色
+              title:[
+                  {
+                      text:data[2].devname,
+                      left:'7%',
+                      top:'10%',
+                      textAlign:'center',
+                      textStyle:{
+                          fontSize:12
+                      }
+                  },
+              ],
+              grid:[
+                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+              ],
+              tooltip: {
+                  trigger: 'axis'
+              },
+              xAxis:[
+                  {
+                      gridIndex:0,
+                      axisLine: {
+                          show: false
+                      },
+                      boundaryGap : false,
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      splitLine: {     //网格线
+                          show: false
+                      },
+                      axisLabel: {
+                          formatter: '{value}',
+                          interval:jiange,//隔几个显示刻度标签
+                          show: true,
+                          textStyle: {
+                              color: '#666',
+                              fontSize:'12'
+                          }
+                      },
+                      data: arr[2]
+                  },
+              ],
+              yAxis:[
+                  {
+                      gridIndex:0,
+                      //name: '(m/s²)',
+                      //boundaryGap:['80%', '80%'],
+                      //data:[-0.006,0.006],
+                      nameTextStyle:{
+                          color:'#666'//y轴name颜色
+                      },
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true,
+                          lineStyle:{
+                              color:'#ccc'
+                          }
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                      axisLabel : {
+                          formatter: '{value}',
+                          textStyle: {
+                              color: '#999'
+                          }
+                      }
+                  },
+                  {
+                      gridIndex:0,   //双y轴
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                  }
+              ],
+              series:
+                  {//#b9322a
+                      symbol: "none",
+                      name:'加速度计8',
+                      type:'line',
+                      stack: '1',
+                      xAxisIndex:0,
+                      yAxisIndex:0,
+                      itemStyle: {
+                          normal: {
+                              //color: "#2ec7c9",圆点颜色
+                              lineStyle: {
+                                  color: "#b9322a"
+                              }
+                          }
+                      },
+                      data:arrData[2]
+                      //data[0].data
+                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
+                  },
+          }
+          var option05 = {
+              backgroundColor: '#fff',//背景色
+              title:[
+                  {
+                      text:data[3].devname,
+                      left:'7%',
+                      top:'10%',
+                      textAlign:'center',
+                      textStyle:{
+                          fontSize:12
+                      }
+                  },
+              ],
+              grid:[
+                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+              ],
+              tooltip: {
+                  trigger: 'axis'
+              },
+              xAxis:[
+                  {
+                      gridIndex:0,
+                      axisLine: {
+                          show: false
+                      },
+                      boundaryGap : false,
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      splitLine: {     //网格线
+                          show: false
+                      },
+                      axisLabel: {
+                          formatter: '{value}',
+                          interval:jiange,//隔几个显示刻度标签
+                          show: true,
+                          textStyle: {
+                              color: '#666',
+                              fontSize:'12'
+                          }
+                      },
+                      data: arr[3]
+                  },
+              ],
+              yAxis:[
+                  {
+                      gridIndex:0,
+                      //name: '(m/s²)',
+                      //boundaryGap:['80%', '80%'],
+                      //data:[-0.006,0.006],
+                      nameTextStyle:{
+                          color:'#666'//y轴name颜色
+                      },
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true,
+                          lineStyle:{
+                              color:'#ccc'
+                          }
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                      axisLabel : {
+                          formatter: '{value}',
+                          textStyle: {
+                              color: '#999'
+                          }
+                      }
+                  },
+                  {
+                      gridIndex:0,   //双y轴
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                  }
+              ],
+              series:
+                  {//#b9322a
+                      symbol: "none",
+                      name:'加速度计8',
+                      type:'line',
+                      stack: '1',
+                      xAxisIndex:0,
+                      yAxisIndex:0,
+                      itemStyle: {
+                          normal: {
+                              //color: "#2ec7c9",圆点颜色
+                              lineStyle: {
+                                  color: "#b9322a"
+                              }
+                          }
+                      },
+                      data:arrData[3]
+                      //data[0].data
+                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
+                  },
+          }
+          var option04 = {
+              backgroundColor: '#fff',//背景色
+              title:[
+                  {
+                      text:data[4].devname,
+                      left:'7%',
+                      top:'10%',
+                      textAlign:'center',
+                      textStyle:{
+                          fontSize:12
+                      }
+                  },
+              ],
+              grid:[
+                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+              ],
+              tooltip: {
+                  trigger: 'axis'
+              },
+              xAxis:[
+                  {
+                      gridIndex:0,
+                      axisLine: {
+                          show: false
+                      },
+                      boundaryGap : false,
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      splitLine: {     //网格线
+                          show: false
+                      },
+                      axisLabel: {
+                          formatter: '{value}',
+                          interval:jiange,//隔几个显示刻度标签
+                          show: true,
+                          textStyle: {
+                              color: '#666',
+                              fontSize:'12'
+                          }
+                      },
+                      data: arr[4]
+                  },
+              ],
+              yAxis:[
+                  {
+                      gridIndex:0,
+                      //name: '(m/s²)',
+                      //boundaryGap:['80%', '80%'],
+                      //data:[-0.006,0.006],
+                      nameTextStyle:{
+                          color:'#666'//y轴name颜色
+                      },
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true,
+                          lineStyle:{
+                              color:'#ccc'
+                          }
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                      axisLabel : {
+                          formatter: '{value}',
+                          textStyle: {
+                              color: '#999'
+                          }
+                      }
+                  },
+                  {
+                      gridIndex:0,   //双y轴
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                  }
+              ],
+              series:
+                  {//#b9322a
+                      symbol: "none",
+                      name:'加速度计8',
+                      type:'line',
+                      stack: '1',
+                      xAxisIndex:0,
+                      yAxisIndex:0,
+                      itemStyle: {
+                          normal: {
+                              //color: "#2ec7c9",圆点颜色
+                              lineStyle: {
+                                  color: "#b9322a"
+                              }
+                          }
+                      },
+                      data:arrData[4]
+                      //data[0].data
+                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
+                  },
+          }
+          var option03 = {
+              backgroundColor: '#fff',//背景色
+              title:[
+                  {
+                      text:data[5].devname,
+                      left:'7%',
+                      top:'10%',
+                      textAlign:'center',
+                      textStyle:{
+                          fontSize:12
+                      }
+                  },
+              ],
+              grid:[
+                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+              ],
+              tooltip: {
+                  trigger: 'axis'
+              },
+              xAxis:[
+                  {
+                      gridIndex:0,
+                      axisLine: {
+                          show: false
+                      },
+                      boundaryGap : false,
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      splitLine: {     //网格线
+                          show: false
+                      },
+                      axisLabel: {
+                          formatter: '{value}',
+                          interval:jiange,//隔几个显示刻度标签
+                          show: true,
+                          textStyle: {
+                              color: '#666',
+                              fontSize:'12'
+                          }
+                      },
+                      data: arr[5]
+                  },
+              ],
+              yAxis:[
+                  {
+                      gridIndex:0,
+                      //name: '(m/s²)',
+                      //boundaryGap:['80%', '80%'],
+                      //data:[-0.006,0.006],
+                      nameTextStyle:{
+                          color:'#666'//y轴name颜色
+                      },
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true,
+                          lineStyle:{
+                              color:'#ccc'
+                          }
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                      axisLabel : {
+                          formatter: '{value}',
+                          textStyle: {
+                              color: '#999'
+                          }
+                      }
+                  },
+                  {
+                      gridIndex:0,   //双y轴
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                  }
+              ],
+              series:
+                  {//#b9322a
+                      symbol: "none",
+                      name:'加速度计8',
+                      type:'line',
+                      stack: '1',
+                      xAxisIndex:0,
+                      yAxisIndex:0,
+                      itemStyle: {
+                          normal: {
+                              //color: "#2ec7c9",圆点颜色
+                              lineStyle: {
+                                  color: "#b9322a"
+                              }
+                          }
+                      },
+                      data:arrData[5]
+                      //data[0].data
+                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
+                  },
+          }
+          var option02 = {
+              backgroundColor: '#fff',//背景色
+              title:[
+                  {
+                      text:data[6].devname,
+                      left:'7%',
+                      top:'10%',
+                      textAlign:'center',
+                      textStyle:{
+                          fontSize:12
+                      }
+                  },
+              ],
+              grid:[
+                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+              ],
+              tooltip: {
+                  trigger: 'axis'
+              },
+              xAxis:[
+                  {
+                      gridIndex:0,
+                      axisLine: {
+                          show: false
+                      },
+                      boundaryGap : false,
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      splitLine: {     //网格线
+                          show: false
+                      },
+                      axisLabel: {
+                          formatter: '{value}',
+                          interval:jiange,//隔几个显示刻度标签
+                          show: true,
+                          textStyle: {
+                              color: '#666',
+                              fontSize:'12'
+                          }
+                      },
+                      data: arr[6]
+                  },
+              ],
+              yAxis:[
+                  {
+                      gridIndex:0,
+                      //name: '(m/s²)',
+                      //boundaryGap:['80%', '80%'],
+                      //data:[-0.006,0.006],
+                      nameTextStyle:{
+                          color:'#666'//y轴name颜色
+                      },
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true,
+                          lineStyle:{
+                              color:'#ccc'
+                          }
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                      axisLabel : {
+                          formatter: '{value}',
+                          textStyle: {
+                              color: '#999'
+                          }
+                      }
+                  },
+                  {
+                      gridIndex:0,   //双y轴
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                  }
+              ],
+              series:
+                  {//#b9322a
+                      symbol: "none",
+                      name:'加速度计8',
+                      type:'line',
+                      stack: '1',
+                      xAxisIndex:0,
+                      yAxisIndex:0,
+                      itemStyle: {
+                          normal: {
+                              //color: "#2ec7c9",圆点颜色
+                              lineStyle: {
+                                  color: "#b9322a"
+                              }
+                          }
+                      },
+                      data:arrData[6]
+                      //data[0].data
+                      //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
+                  },
+          }
+          var option01 = {
+              backgroundColor: '#fff',//背景色
+              title:[
+                  {
+                      text:data[7].devname,
+                      left:'7%',
+                      top:'10%',
+                      textAlign:'center',
+                      textStyle:{
+                          fontSize:12
+                      }
+                  },
+              ],
+              grid:[
+                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+              ],
+              tooltip: {
+                  trigger: 'axis'
+              },
+              xAxis:[
+                  {
+                      gridIndex:0,
+                      axisLine: {
+                          show: false
+                      },
+                      boundaryGap : false,
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      splitLine: {     //网格线
+                          show: false
+                      },
+                      axisLabel: {
+                          formatter: '{value}',
+                          interval:jiange,//隔几个显示刻度标签
+                          show: true,
+                          textStyle: {
+                              color: '#666',
+                              fontSize:'12'
+                          }
+                      },
+                      data: arr[7]
+                  },
+              ],
+              yAxis:[
+                  {
+                      gridIndex:0,
+                      //name: '(m/s²)',
+                      //boundaryGap:['80%', '80%'],
+                      //data:[-0.006,0.006],
+                      nameTextStyle:{
+                          color:'#666'//y轴name颜色
+                      },
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true,
+                          lineStyle:{
+                              color:'#ccc'
+                          }
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                      axisLabel : {
+                          formatter: '{value}',
+                          textStyle: {
+                              color: '#999'
+                          }
+                      }
+                  },
+                  {
+                      gridIndex:0,   //双y轴
+                      min:'dataMin',
+                      max:'dataMax',
+                      splitNumber:1,   //刻度分割段数，默认值为5
+                      interval:1,        //强制分割间隔
+                      splitLine: {     //网格线
+                          show: true
+                      },
+                      axisTick:{       //刻度线
+                          show:false
+                      },
+                      axisLine:{
+                          lineStyle:{
+                              color:'#ccc',
+                              width:1,//这里是为了突出显示加上的
+                          }
+                      },
+                  }
+              ],
+              series:
+                  {//#b9322a
+                      symbol: "none",
+                      name:'加速度计8',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -1153,9 +1282,11 @@
                           }
                       },
                       data:arrData[7]
+                      //data[0].data
                       //[-0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021, -0.005, 0.007, -0.007, 0.0025, -0.004, 0.0010, -0.0021],
                   },
           }
+
           myChart08.setOption(option08)
           myChart07.setOption(option07)
           myChart06.setOption(option06)
