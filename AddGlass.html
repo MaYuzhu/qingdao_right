@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加玻璃告警</title>
+    <style>
+        body{
+            background: #eee;
+        }
+        .wrap{
+            background: #fff;
+            width: 90%;
+            margin: 0 auto;
+            padding:0 0 20px 0;
+        }
+        .item{
+            display: inline-block;
+            width: 200px;
+            text-align: right;
+        }
+        textarea{
+            width: 70%;
+        }
+        form>div{
+            margin-top: 10px;
+        }
+        form input{
+            width: 70%;
+        }
+        .wrap_submit{
+            text-align: center;
+        }
+        #submit{
+            width: 80px;
+            height: 30px;
+            border-radius: 5px;
+            margin: 0;
+            padding: 0;
+            border: 1px solid #999;
+            outline: none;
+            cursor: pointer;
+            background: #f0f0f0;
+            font-size: 14px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <h2>增加设备的告警信息</h2>
+        <form action="javascript:;" method="post">
+            <div class="container">
+                <label>
+                    <span class="item">玻璃编号：</span>
+                    <input type="text" id="text1" placeholder="清输入玻璃编号">
+                </label>
+            </div>
+            <div class="container">
+                <label>
+                    <span class="item">告警等级：</span>
+                    <input type="text" id="text2" placeholder="告警等级 0:正常 2:告警">
+                </label>
+            </div>
+            <div class="container">
+                <label>
+                    <span class="item">告警时间：</span>
+                    <input type="text" id="test1" placeholder="点击选择时间">
+                </label>
+            </div>
+            <div class="container">
+                <label>
+                    <span class="item item3">告警描述信息：</span>
+                    <textarea  rows="10" id="text3" style="vertical-align: top;"
+                               placeholder="告警设备的具体描述"></textarea>
+                </label>
+            </div>
+            <div class="container">
+                <span class="item">请选择告警玻璃图片文件：</span>
+                <input type="file" id="text4" multiple/>
+            </div>
+            <div class="wrap_submit">
+                <button id="submit">提 交</button>
+            </div>
+        </form>
+    </div>
+    <script type="text/javascript" src="./js/jquery-1.11.3.min.js"></script>
+    <script src="./js/layDate-v5.0.9/laydate/laydate.js"></script> <!-- 改成你的路径 -->
+    <script>
+        //执行一个laydate实例
+        laydate.render({
+            elem: '#test1'
+            ,type: 'datetime'
+        });
+    </script>
+    <script>
+        var url = 'http://36.110.66.214:50001'
+        $('#submit').on('click',function () {
+            var number = $('#text1').val()
+            var level = $('#text2').val()
+            var alarm_reason = $('#text3').val()
+            var alarm_time = $('#test1').val()
+
+            var fileObj = document.getElementById("text4").files[0]; // js 获取文件对象
+            if (typeof (fileObj) == "undefined" || fileObj.size <= 0) {
+                alert("请选择图片");
+                return;
+            }
+            var formFile = new FormData();
+            formFile.append("action", "UploadVMKImagePath");
+            formFile.append("image", fileObj); //加入文件对象
+            formFile.append("number", number);
+            formFile.append("level", level);
+            formFile.append("alarm_reason", alarm_reason);
+            formFile.append("alarm_time", alarm_time);
+
+            var data = formFile;
+            $.ajax({
+                type: 'post',
+                async: true,
+                data:data,/*{'number':number,
+                      'level':level,
+                      'alarm_reason':alarm_reason,
+                      'image':image,
+                      },*/
+                url: url + '/zzcismp/alarm/addDataDeviceAlarm.shtml',
+                dataType: 'json',
+                cache: false,//上传文件无需缓存
+                processData: false,//用于对data参数进行序列化处理 这里必须false
+                contentType: false, //必须
+                success: function (result) {
+                    console.log(result)
+                },
+            })
+        })
+        //先登录
+        $.ajax({
+            type: 'get',
+            async: false,
+            cache: true,
+            url: url + '/zzcismp/user/login.shtml?username=admin&password=123456',
+            dataType: 'jsonp',
+            jsonp: "callback",
+            success: function (json) {},
+        })
+
+    </script>
+</body>
+</html>

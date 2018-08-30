@@ -55,7 +55,7 @@
       }
       .c1 span{
           position: absolute;
-          bottom: 6%;
+          bottom: 8px;
           right: 2%;
           color: #666;
       }
@@ -68,10 +68,6 @@
           margin: 0;
       }
 
-      #box8,#box1{
-          width: 96.5%;
-          height: 80px;
-      }
       #box8,#box1,#box7,#box6,#box5,#box4,#box3,#box2{
           width: 96.5%;
           height: 50px;
@@ -129,38 +125,34 @@
           for(var i=0;i<$('.c1>.box>div').length;i++){
               $('.c1>.box>div')[i].style.display = 'none'
           }
-          var n = Number($.getUrlParam('channel'))
+          var n = $.getUrlParam('devcode')
 
           switch (n){
-              case 1:
+              case "3702B00040010N35":
                   $('#box8').css('display','block')
                   break;
-              case 2:
+              case "3702B00040010N36":
                   $('#box7').css('display','block')
                   break;
-              case 3:
+              case "3702B00040010N37":
                   $('#box6').css('display','block')
                   break;
-              case 4:
+              case "3702B00040010N38":
                   $('#box5').css('display','block')
                   break;
-              case 5:
+              case "3702B00040010N39":
                   $('#box4').css('display','block')
                   break;
-              case 6:
+              case "3702B00040010N40":
                   $('#box3').css('display','block')
                   break;
-              case 7:
+              case "3702B00040010N41":
                   $('#box2').css('display','block')
                   break;
-              case 8:
+              case "3702B00040010N42":
                   $('#box1').css('display','block')
                   break;
-              case 0:
-                  for(var i=0;i<$('.c1>.box>div').length;i++){
-                      $('.c1>.box>div')[i].style.display = 'block'
-                  }
-                  break;
+
               default:
                   for(var i=0;i<$('.c1>.box>div').length;i++){
                       $('.c1>.box>div')[i].style.display = 'block'
