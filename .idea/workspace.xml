@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bcc0b3f9-0099-4188-867c-7728f5e4bf52" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/AddGlass.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/laydate/laydate.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/laydate/theme/default/font/iconfont.eot" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/laydate/theme/default/font/iconfont.svg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/laydate/theme/default/font/iconfont.ttf" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/laydate/theme/default/font/iconfont.woff" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/laydate/theme/default/laydate.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/test.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/文档/官网.url" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/文档/文档.url" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/文档/社区.url" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/js/layDate-v5.0.9/更新日志.url" />
-      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" afterPath="$PROJECT_DIR$/.idea/webServers.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/jsd.html" afterPath="$PROJECT_DIR$/jsd.html" />
+      <change beforePath="$PROJECT_DIR$/AddGlass.html" afterPath="$PROJECT_DIR$/AddGlass.html" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -70,11 +57,10 @@
       <file leaf-file-name="AddGlass.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AddGlass.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="498">
-              <caret line="94" column="11" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+            <state relative-caret-position="519">
+              <caret line="135" column="21" lean-forward="true" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#textarea#0;n#label#0;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                <element signature="n#script#3;n#body#0;n#html#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -344,7 +330,7 @@
       <workItem from="1535332048800" duration="16274000" />
       <workItem from="1535353617110" duration="3784000" />
       <workItem from="1535432913795" duration="4260000" />
-      <workItem from="1535504961853" duration="16643000" />
+      <workItem from="1535504961853" duration="17335000" />
     </task>
     <task id="LOCAL-00001" summary="接口文档">
       <created>1532684102385</created>
@@ -486,22 +472,29 @@
       <option name="project" value="LOCAL" />
       <updated>1535357927493</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="提交玻璃页面">
+      <created>1535617854412</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1535617854412</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116162000" />
+    <option name="totallyTimeSpent" value="116854000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
     <layout>
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.076478146" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14395887" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14395887" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="File Transfer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21265142" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34320322" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13189772" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13458951" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -557,7 +550,8 @@
     <MESSAGE value="玻璃图片调用接口数据结构有变化" />
     <MESSAGE value="加速度计" />
     <MESSAGE value="根据浏览器参数显示不同的通道" />
-    <option name="LAST_COMMIT_MESSAGE" value="根据浏览器参数显示不同的通道" />
+    <MESSAGE value="提交玻璃页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="提交玻璃页面" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1054,11 +1048,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AddGlass.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="498">
-          <caret line="94" column="11" lean-forward="false" selection-start-line="94" selection-start-column="11" selection-end-line="94" selection-end-column="11" />
+        <state relative-caret-position="519">
+          <caret line="135" column="21" lean-forward="true" selection-start-line="135" selection-start-column="21" selection-end-line="135" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#textarea#0;n#label#0;n#div#3;n#form#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#script#3;n#body#0;n#html#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>

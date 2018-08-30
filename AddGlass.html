@@ -128,7 +128,12 @@
                 processData: false,//用于对data参数进行序列化处理 这里必须false
                 contentType: false, //必须
                 success: function (result) {
-                    console.log(result)
+                    //console.log(result)
+                    if(result.status==1){
+                        alert('提交成功')
+                    }else if(result.status==0){
+                        alert('提交失败，请检查后再提交')
+                    }
                 },
             })
         })
