@@ -72,7 +72,7 @@
                 },
             },
             yAxis: {
-                name:'单位',
+                name:'单位(个)',
                 nameTextStyle:{
                     fontSize:10
                 },
@@ -94,11 +94,12 @@
                 splitLine:{
                     show:false,
                 },
+                minInterval:1
             },
             series: [
                 {
                     name: '异常',
-                    type: 'line',
+                    type: 'bar',
                     stack:'健康情况',
                     barWidth: 12,
                     data: yData,
@@ -203,7 +204,7 @@
                 },
             },
             yAxis: {
-                name:'单位',
+                name:'单位(个)',
                 nameTextStyle:{
                     fontSize:10
                 },
@@ -225,6 +226,7 @@
                 splitLine:{
                     show:false,
                 },
+                minInterval:1
             },
             series: [
                 {

@@ -334,7 +334,8 @@
                   {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
-                  trigger: 'axis'
+                  trigger: 'axis',
+                  formatter: tip,
               },
               xAxis:[
                   {
@@ -419,7 +420,7 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计8',
+                      name:'加速度计1',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -454,7 +455,8 @@
                   {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
-                  trigger: 'axis'
+                  trigger: 'axis',
+                  formatter: tip,
               },
               xAxis:[
                   {
@@ -539,7 +541,7 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计8',
+                      name:'加速度计1',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -574,7 +576,8 @@
                   {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
-                  trigger: 'axis'
+                  trigger: 'axis',
+                  formatter: tip,
               },
               xAxis:[
                   {
@@ -659,7 +662,7 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计8',
+                      name:'加速度计1',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -694,7 +697,8 @@
                   {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
-                  trigger: 'axis'
+                  trigger: 'axis',
+                  formatter: tip,
               },
               xAxis:[
                   {
@@ -779,7 +783,7 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计8',
+                      name:'加速度计2',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -814,7 +818,8 @@
                   {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
-                  trigger: 'axis'
+                  trigger: 'axis',
+                  formatter: tip,
               },
               xAxis:[
                   {
@@ -899,7 +904,7 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计8',
+                      name:'加速度计2',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -934,7 +939,8 @@
                   {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
-                  trigger: 'axis'
+                  trigger: 'axis',
+                  formatter: tip,
               },
               xAxis:[
                   {
@@ -1019,7 +1025,7 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计8',
+                      name:'加速度计3',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -1054,7 +1060,8 @@
                   {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
-                  trigger: 'axis'
+                  trigger: 'axis',
+                  formatter: tip,
               },
               xAxis:[
                   {
@@ -1139,7 +1146,7 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计8',
+                      name:'加速度计3',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -1174,7 +1181,8 @@
                   {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
               ],
               tooltip: {
-                  trigger: 'axis'
+                  trigger: 'axis',
+                  formatter: tip,
               },
               xAxis:[
                   {
@@ -1259,7 +1267,7 @@
               series:
                   {//#b9322a
                       symbol: "none",
-                      name:'加速度计8',
+                      name:'加速度计3',
                       type:'line',
                       stack: '1',
                       xAxisIndex:0,
@@ -1298,7 +1306,29 @@
               myChart01.resize()
           })
       }
+      function tip(params, ticket, callback) {
+          var htmlStr = '';
+          for(var i=0;i<params.length;i++){
+              var param = params[i];
+              var xName = param.name;//x轴的名称
+              var seriesName = param.seriesName;//图例名称
+              var value = param.value;//y轴值
+              var color = param.color;//图例颜色
 
+              if(i===0){
+                  htmlStr += xName + '<br/>';//x轴的名称
+              }
+              htmlStr +='<div>';
+              //为了保证和原来的效果一样，这里自己实现了一个点的效果
+              htmlStr += '<span style="margin-right:5px;display:inline-block;width:10px;height:10px;border-radius:5px;background-color:transparent;"></span>';
+
+              //圆点后面显示的文本
+              htmlStr += seriesName + '：' + value + '';
+
+              htmlStr += '</div>';
+          }
+          return htmlStr;
+      }
 
   </script>
 </body>

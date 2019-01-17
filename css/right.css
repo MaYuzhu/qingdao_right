@@ -29,6 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    min-height: 620px;
 }
 .wrap .count{
     height: 7.5%;
@@ -155,6 +156,11 @@ body {
 .wrap .huan>ul>li{
     color: #fff;
     font-size: 12px;
+    display: flex;
+}
+.wrap .huan>ul>li>p{
+    line-height: 25px;
+    margin: 0 10px 0 5px;
 }
 .wrap .huan>ul>li>div{
     margin: 8px auto 10px;
