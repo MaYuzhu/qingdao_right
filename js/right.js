@@ -420,17 +420,19 @@
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
-                //console.log(json)
+                //console.log(json.data)
+                var newArr = json.data.filter(item => item.sub_type)
+                //console.log(newArr)
                 let arrImage = []
-                for(let i=0;i<json.data.length;i++){
+                for(let i=0;i<newArr.length;i++){
                     //http://36.110.66.214:50001/zzcismp/pic/20180803152732.png
-                    arrImage.push(json.data[i].img_url)
+                    arrImage.push(newArr[i].img_url)
                 }
                 for(let i=0;i<arrImage.length;i++){
                     /*$('.swiper-slide')[i].innerHTML = `<img style='width:100%;height:128px;'
                                 src='http://36.110.66.214:50001/zzcismp${arrImage[i]}'>`*/
                     $('.swiper-wrapper').append(`<div class="swiper-slide"><img style='width:100%;height:128px;'
-                                src='http://36.110.66.214:50001/zzcismp${arrImage[i]}'></div>`)
+                                src='${url}/zzcismp${arrImage[i]}'></div>`)
                 }
 	            var mySwiper = new Swiper ('.swiper-container', {
 		            direction: 'horizontal',
