@@ -274,9 +274,9 @@
 	      })
     }
 
-    /*window.addEventListener('resize',function () {
-        location.reload()窗口大小改变强制刷新
-    })*/
+    window.addEventListener('resize',function () {
+        location.reload()  //窗口大小改变强制刷新
+    })
     function getNowFormatDate() {
         var date = new Date(new Date()-6*24*3600*1000);
         var seperator1 = "-";
@@ -472,5 +472,30 @@
         jsEvent.MessageText = "收到js消息";
         jsEvent.ShowAlarmList();
     }
+
+    //天气预报  免费接口
+    function tianqi(){
+        $.ajax({
+            type: 'get',
+            async: true,
+            cache: true,
+            url: 'http://t.weather.sojson.com/api/weather/city/101120201',
+            dataType: 'json',
+            success: function (json) {
+                console.log(json)
+                var feng1 = json.data.forecast[0].fx
+                var feng2 = json.data.forecast[0].fl
+                $('.tianqi_feng>:nth-child(1)').text(feng1)
+                $('.tianqi_feng>:nth-child(2)').text(feng2)
+
+                var wen1 = json.data.forecast[0].high.substring(3)
+                var wen2 = json.data.forecast[0].low.substring(3)
+                $('.tianqi_wen>:nth-child(1)').text(wen1)
+                $('.tianqi_wen>:nth-child(2)').text(wen2)
+            },
+        })
+        setInterval(tianqi,1000*60*60*24)
+    }
+    tianqi()
 
 })(window)

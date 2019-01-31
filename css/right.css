@@ -59,6 +59,9 @@ body {
     font-family: lcdfont;
     text-align: center;
 }
+.wrap .count>ul> :nth-child(3) .top_yi{
+    color: #e2e200;
+}
 .wrap .count>ul>li :nth-child(2){
     text-align: center;
     color: #fff;
@@ -128,8 +131,9 @@ body {
     height: 100%;*/
 }
 .wrap .huan{
-    height: 11.6%;
+    /*height: 11.6%;*/
     /*margin-top: 20px;*/
+    height: 16%;
     background: url('../image/qingdaobeizhan_39.png') no-repeat;
     background-size: 100% 100%;
 }
@@ -148,24 +152,42 @@ body {
     height: 150%;
     opacity: 0.5;
 }
-.wrap .huan>ul{
+/*.wrap .huan>ul{
     display: flex;
     justify-content: space-around;
     clear: both;
-}
+}*/
 .wrap .huan>ul>li{
     color: #fff;
     font-size: 12px;
     display: flex;
+    height: 30%;
+    margin-top: 2px;
 }
 .wrap .huan>ul>li>p{
-    line-height: 25px;
+    line-height: 15px;
     margin: 0 10px 0 5px;
 }
 .wrap .huan>ul>li>div{
-    margin: 8px auto 10px;
+    margin: 2px auto 4px 0;
     box-sizing: border-box;
 }
+
+.wrap .huan .ul_left{
+    float:left;
+    background: rgba(255, 255, 255, 0.1);
+    width: 45%;
+    height: 54%;
+    margin: 0 8px 5px 4%;
+    clear: both;
+}
+.wrap .huan .ul_right{
+    float:left;
+    background: rgba(255, 255, 255, 0.1);
+    width: 45%;
+    height: 54%;
+}
+
 .wrap .huan>ul>li>.red_qiu{
     width: 7px;
     height: 7px;
@@ -194,8 +216,46 @@ body {
     border-radius: 50%;
     box-shadow: 0 0 8px 1px rgba(109, 109, 109,.8);
 }
+
+.huan>div{
+    float:right;
+    display:flex;
+    justify-content: space-around;
+    width: 50%;
+    height: 20px;
+    margin-top: 16px;
+    color: #e8e8e8;
+}
+.huan>div p{
+    margin-right: 5px;
+}
+.red_qiu{
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(to right, rgb(238,45,36),rgb(241,90,36),rgb(241,90,36));
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgba(238,45,36,.9);
+}
+.yellow_qiu{
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(to right, rgb(247,154,30),rgb(252,238,30),rgb(252,238,30));
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgba(247,154,30,.9);
+}
+.green_qiu{
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    background: linear-gradient(to right, rgb(8,115,58),rgb(57,181,74),rgb(57,181,74));
+    border-radius: 50%;
+    box-shadow: 0 0 10px 1px rgba(8,115,58,.9);
+}
+
 .wrap .yi{
-    height: 318px;
+    height: 314px;
     /*margin-top: 20px;*/
     background: url('../image/qingdaobeizhan_42.png') no-repeat;
     background-size: 100% 100%;
