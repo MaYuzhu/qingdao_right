@@ -292,17 +292,7 @@
         var currentdate = year + seperator1 + month + seperator1 + strDate;
         return currentdate;
     }
-    let ajax1 = $.ajax({
-        type: 'get',
-        async: false,
-        cache: true,
-        url: url + '/zzcismp/user/login.shtml?username=admin&password=123456',
-        dataType: 'jsonp',
-        jsonp: "callback",
-        success: function (json) {},
-
-    })
-    $.when(ajax1).done(function () {
+    function getData() {
         //top数据
         $.ajax({
             type: 'get',
@@ -371,6 +361,14 @@
                 }else {
                     $('.huan .yuliang').addClass('gray_qiu')
                 }//雨量
+
+                //风力 温度 值 max
+                var feng2 = json[0].alarm_info.filter(a=>a.type=='L')[0].max_value
+                $('.tianqi_feng').text(feng2+'级')
+
+                var wen = json[0].alarm_info.filter(a=>a.type=='T')[0].max_value
+                $('.tianqi_wen').text(wen+'℃')
+
             },
             error: function () {
                 // alert('fail');
@@ -394,7 +392,7 @@
             }
         })
         //异常统计下
-        $.ajax({
+        /*$.ajax({
             type: 'get',
             async: true,
             cache: true,
@@ -409,7 +407,10 @@
             error: function () {
                 // alert('fail');
             }
-        })
+        })*/
+        //异常统计下=>文字消息
+        $('#message').append(``)
+
         //监控有问题的玻璃图片
         $.ajax({
             type: 'get',
@@ -428,38 +429,119 @@
                     //http://36.110.66.214:50001/zzcismp/pic/20180803152732.png
                     arrImage.push(newArr[i].img_url)
                 }
+                $('.swiper-wrapper').empty()
                 for(let i=0;i<arrImage.length;i++){
                     /*$('.swiper-slide')[i].innerHTML = `<img style='width:100%;height:128px;'
                                 src='http://36.110.66.214:50001/zzcismp${arrImage[i]}'>`*/
-                    $('.swiper-wrapper').append(`<div class="swiper-slide"><img style='width:100%;height:128px;'
-                                src='${url}/zzcismp${arrImage[i]}'></div>`)
+
+                    $('.swiper-wrapper').append(`<div class="swiper-slide">
+                                <img style='width:100%;height:128px;' src='${url}/zzcismp${arrImage[i]}'>
+                                </div>`)
                 }
-	            var mySwiper = new Swiper ('.swiper-container', {
-		            direction: 'horizontal',
-		            loop: true,
+                var mySwiper = new Swiper ('.swiper-container', {
+                    direction: 'horizontal',
+                    loop: true,
 
-		            // 如果需要分页器
-		            pagination: {
-			            el: '.swiper-pagination',
-		            },
+                    // 如果需要分页器
+                    pagination: {
+                        el: '.swiper-pagination',
+                    },
 
-		            // 如果需要前进后退按钮
-		            navigation: {
-			            nextEl: '.swiper-button-next',
-			            prevEl: '.swiper-button-prev',
-		            },
+                    // 如果需要前进后退按钮
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
 
-		            // 如果需要滚动条
-		            scrollbar: {
-			            el: '.swiper-scrollbar',
-		            },
-	            })
+                    // 如果需要滚动条
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
+                    },
+                })
             },
             error: function () {
                 // alert('fail');
             }
         })
+        setTimeout(getData,1000*60*30)
+
+        //获取消息
+        $.ajax({
+            type: 'get',
+            async: true,
+            cache: true,
+            //data: {projectCode:37020010},
+            url: url + '/zzcismp/alarm/getProjDevAlarmData.shtml?offset=0&limit=10&buildcode=0&handle_status=-1',
+            dataType: 'jsonp',
+            jsonp: "callback",
+            success: function (json) {
+                //console.log(json.rows)
+                var message_length = json.rows.length
+                $('#message ul').empty()
+                for(var i=0;i<message_length;i++){
+                    $('#message>ul').append(`<li>
+                        <span>${json.rows[i].alarm_reason}</span>
+                        <span>${json.rows[i].alarm_time}</span>
+                    </li>`)
+                }
+                //消息移入
+                var liC = $("#message>ul>li").length
+                for(var i=1;i<=liC;i++){
+                    textTip($(`#message>ul>:nth-child(${i})`),$(`#message>ul>:nth-child(${i})`).text())
+                }
+                function textTip(dom,string) {
+                    dom.hover(function(event){
+                        var tooltipHtml = `<div id='tooltip' class='tooltip'>${string}</div>`;
+                        $(this).append(tooltipHtml);
+                        $("#tooltip").css({
+                            "opacity": 1,
+                            "background":"rgba(220,20,20,.9)",
+                            "top": (event.pageY)-50 + "px",
+                            "left": 20 + "px",
+                        }).show("fast");
+                    },function(){
+                        $("#tooltip").remove();
+                    })
+                }
+
+                //消息滚动
+                textMove()
+                var index = 0
+                var timeTextMove
+                function textMove() {
+                    index++
+                    if(index == liC-4){
+                        index = 0
+                    }
+                    $('#message ul').css({"transform": `translate(0,-${index*27}px)`})
+                    timeTextMove = setTimeout(textMove,5000)
+                }
+
+
+                $('#message').hover(function(){
+                    //console.log('移入');
+                    clearTimeout(timeTextMove)
+                },function(){
+                    //console.log('移出');
+                    textMove()
+                });
+            },
+            error: function () {
+                // alert('fail');
+            }
+        })
+    }
+    let ajax1 = $.ajax({
+        type: 'get',
+        async: false,
+        cache: true,
+        url: url + '/zzcismp/user/login.shtml?username=admin&password=123456',
+        dataType: 'jsonp',
+        jsonp: "callback",
+        success: function (json) {},
+
     })
+    $.when(ajax1).done(getData())
     //点击事件调用c/s函数
     $('.count li').on('click',function () {
         BtnClick()
@@ -474,28 +556,31 @@
     }
 
     //天气预报  免费接口
+    tianqi()
     function tianqi(){
         $.ajax({
             type: 'get',
             async: true,
             cache: true,
+            //url:'http://www.weather.com.cn/data/sk/101110101.html',
             url: 'http://t.weather.sojson.com/api/weather/city/101120201',
             dataType: 'json',
             success: function (json) {
-                console.log(json)
-                var feng1 = json.data.forecast[0].fx
-                var feng2 = json.data.forecast[0].fl
-                $('.tianqi_feng>:nth-child(1)').text(feng1)
-                $('.tianqi_feng>:nth-child(2)').text(feng2)
+                //console.log(json)
+                var shi = json.data.shidu
+                $('.tianqi_shi').text(shi)
 
-                var wen1 = json.data.forecast[0].high.substring(3)
-                var wen2 = json.data.forecast[0].low.substring(3)
-                $('.tianqi_wen>:nth-child(1)').text(wen1)
-                $('.tianqi_wen>:nth-child(2)').text(wen2)
+                var tian = json.data.forecast[0].type
+                $('.tianqi_tian').text(tian)
             },
         })
-        setInterval(tianqi,1000*60*60*24)
+        setTimeout(tianqi,1000*60*60*24)
+
     }
-    tianqi()
+
+        //消息接口
+    //http://36.110.66.214:50001/zzcismp/alarm/getProjDevAlarmData.shtml?offset=0&limit=10&buildcode=0&handle_status=-1
+
+
 
 })(window)

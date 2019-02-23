@@ -160,13 +160,15 @@ body {
 .wrap .huan>ul>li{
     color: #fff;
     font-size: 12px;
-    display: flex;
+    /*display: flex;
+    justify-content: start;*/
     height: 30%;
     margin-top: 2px;
 }
 .wrap .huan>ul>li>p{
     line-height: 15px;
-    margin: 0 10px 0 5px;
+    /*padding-right: 5px;*/
+    /*margin: 0 10px 0 5px;*/
 }
 .wrap .huan>ul>li>div{
     margin: 2px auto 4px 0;
@@ -174,20 +176,29 @@ body {
 }
 
 .wrap .huan .ul_left{
-    float:left;
-    background: rgba(255, 255, 255, 0.1);
-    width: 45%;
-    height: 54%;
-    margin: 0 8px 5px 4%;
+    width: 95%;
+    height: 70%;
+    margin: 0 auto;
     clear: both;
+    display: flex;
+    justify-content: space-between;
 }
-.wrap .huan .ul_right{
-    float:left;
-    background: rgba(255, 255, 255, 0.1);
-    width: 45%;
+.wrap .huan .ul_left li{
+    width: 23%;
     height: 54%;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-direction:column;
 }
-
+.wrap .huan>ul>li>p{
+    text-align: center;
+}
+.wrap .huan>ul>li span{
+    display: inline-block;
+    margin-left: 5px;
+}
 .wrap .huan>ul>li>.red_qiu{
     width: 7px;
     height: 7px;
@@ -223,7 +234,7 @@ body {
     justify-content: space-around;
     width: 50%;
     height: 20px;
-    margin-top: 16px;
+    margin-top: 20px;
     color: #e8e8e8;
 }
 .huan>div p{
@@ -288,9 +299,57 @@ body {
 #diqu,#riqi{
     background: url('../image/loading.gif') no-repeat center;
 }
-
-
-
+/*最下边文字消息*/
+#message{
+    position: relative;
+    height: 130px;
+    overflow: hidden;
+    color: #eee;
+    font-size: 12px;
+}
+#message .mask{
+    position: absolute;
+    z-index: 999;
+    width: 96%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    background: -webkit-linear-gradient(rgba(20, 28, 57, 0.7), rgba(0, 0, 0, 0),rgba(20, 28, 57, 0.7)); /* Safari 5.1 - 6.0 */
+    background: -o-linear-gradient(rgba(20, 28, 57, 0.7), rgba(0, 0, 0, 0),rgba(20, 28, 57, 0.7)); /* Opera 11.1 - 12.0 */
+    background: -moz-linear-gradient(rgba(20, 28, 57, 0.7), rgba(0, 0, 0, 0),rgba(20, 28, 57, 0.7)); /* Firefox 3.6 - 15 */
+    background: linear-gradient(rgba(20, 28, 57, 0.7), rgba(0, 0, 0, 0),rgba(0, 0, 0, 0),rgba(20, 28, 57, 0.7)); /* 标准的语法 */
+}
+#message li{
+    /*position: relative;*/
+    padding: 6px 0 6px 10px;
+    cursor: default;
+}
+#message ul{
+    transition: 1s;
+}
+.tooltip {
+    position: absolute;
+    display: block;
+    z-index: 9900000;
+    outline: none;
+    padding: 5px;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    border-radius: 5px 5px 5px 5px;
+}
+#message li>:nth-child(1){
+    display: inline-block;
+    width: 57%;
+    height: 13px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
 
 
 

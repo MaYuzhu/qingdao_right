@@ -51,14 +51,27 @@
                 <div><p class="red_qiu"></p><span>异常</span></div>
             </div>
             <ul class="ul_left">
-                <li><p>青岛北站</p></li>
-                <li><p>风力:</p><p style="width:40px;"></p><div class="wind"></div></li>
-                <li><p>温度:</p><p style="width:40px;"> ℃</p><div class="wen"></div></li>
+                <li>
+                    <p>风力<span class="wind"></span></p>
+                    <p class="tianqi_feng"></p>
+                </li>
+                <li>
+                    <p>温度<span class="wen"></span></p>
+                    <p class="tianqi_wen"></p>
+                </li>
+                <!--<li><p style="width:40px;"> ℃</p></li>-->
                 <!--<li><p>湿度</p><div class="shi"></div></li>
                 <li><p>雨量</p><div class="yuliang"></div></li>-->
+                <li>
+                    <p>湿度</p>
+                    <p class="tianqi_shi"></p>
+                </li>
+                <li>
+                    <p>天气</p>
+                    <p class="tianqi_tian"></p>
+                </li>
             </ul>
-            <ul class="ul_right">
-                <li><p>青岛</p></li>
+            <!--<ul class="ul_right">
                 <li>
                     <p>风力:</p>
                     <p class="tianqi_feng" style="width:70px;">
@@ -73,13 +86,22 @@
                         <span></span>
                     </p>
                 </li>
-            </ul>
+            </ul>-->
         </div>
         <div class="yi">
             <p><img src="./image/titlebg.png" alt="">异常统计</p>
             <div id="diqu"></div>
-            <img src="./image/line.png" alt="">
-            <div id="riqi"></div>
+            <!--<img src="./image/line.png" alt="">
+            <div id="riqi"></div>-->
+            <div id="message">
+                <div class="mask"></div>
+                <ul>
+                    <!--<li>
+                        <span>第一区，AS233玻璃破裂，请关注a第一区，AS233玻璃破裂，请关注aa </span>
+                        <span>2019.2.23 12:22</span>
+                    </li>-->
+                </ul>
+            </div>
         </div>
     </div>
     <script type="text/javascript" src="./js/browser.min.js"></script>
