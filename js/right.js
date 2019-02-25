@@ -408,8 +408,6 @@
                 // alert('fail');
             }
         })*/
-        //异常统计下=>文字消息
-        $('#message').append(``)
 
         //监控有问题的玻璃图片
         $.ajax({
@@ -465,7 +463,7 @@
         })
         setTimeout(getData,1000*60*30)
 
-        //获取消息
+        //异常统计下 消息展示
         $.ajax({
             type: 'get',
             async: true,
@@ -479,15 +477,23 @@
                 var message_length = json.rows.length
                 $('#message ul').empty()
                 for(var i=0;i<message_length;i++){
-                    $('#message>ul').append(`<li>
+                    $('#message>ul').append(`<li 
+                        title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time.substring(0,10)}/${json.rows[i].alarm_time.substring(11)}>
+                        <span>${json.rows[i].alarm_reason}</span>
+                        <span>${json.rows[i].alarm_time}</span>
+                    </li>`)
+                }
+                for(var i=0;i<message_length;i++){
+                    $('#message>ul').append(`<li title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time}>
                         <span>${json.rows[i].alarm_reason}</span>
                         <span>${json.rows[i].alarm_time}</span>
                     </li>`)
                 }
                 //消息移入
                 var liC = $("#message>ul>li").length
-                for(var i=1;i<=liC;i++){
-                    textTip($(`#message>ul>:nth-child(${i})`),$(`#message>ul>:nth-child(${i})`).text())
+                //console.log(liC)
+                for(let i=1;i<=liC;i++){
+                    //textTip($(`#message>ul>:nth-child(${i})`),$(`#message>ul>:nth-child(${i})`).text())
                 }
                 function textTip(dom,string) {
                     dom.hover(function(event){
@@ -495,9 +501,10 @@
                         $(this).append(tooltipHtml);
                         $("#tooltip").css({
                             "opacity": 1,
-                            "background":"rgba(220,20,20,.9)",
-                            "top": (event.pageY)-50 + "px",
+                            "background":"rgba(20,20,20,.9)",
+                            "top": (event.pageY)-660 + "px",
                             "left": 20 + "px",
+                            "z-index":"9999"
                         }).show("fast");
                     },function(){
                         $("#tooltip").remove();
@@ -505,25 +512,47 @@
                 }
 
                 //消息滚动
-                textMove()
+                /*textMove()
                 var index = 0
                 var timeTextMove
                 function textMove() {
                     index++
-                    if(index == liC-4){
+                    if(index == liC - 4){
                         index = 0
                     }
-                    $('#message ul').css({"transform": `translate(0,-${index*27}px)`})
-                    timeTextMove = setTimeout(textMove,5000)
+                    setTimeout(function () {
+                        $('#message ul').css({"transition": `none`})
+                        $('#message ul').css({"transform": `translate(0,-${index*27}px)`})
+                    },100)
+
+                    timeTextMove = setTimeout(textMove,1000)
+                }*/
+
+                textMove()
+                var index = 0
+                var timeTextMove
+                function textMove() {
+                    timeTextMove = setInterval(function () {
+                        if(index == 10){
+                            index = 0
+                            $('#message ul').css({"transition": 'none',
+                                "transform": `translate(0,-${index*25}px)`})
+                        }
+                        setTimeout(function () {
+                            index++
+                            $('#message ul').css({"transition": `1.5s`,
+                                "transform": `translate(0,-${index*25}px)`})
+                        },20)
+                    },1500)
                 }
-
-
                 $('#message').hover(function(){
                     //console.log('移入');
                     clearTimeout(timeTextMove)
+                    $('.mask').hide()
                 },function(){
                     //console.log('移出');
                     textMove()
+                    $('.mask').show()
                 });
             },
             error: function () {
@@ -543,16 +572,19 @@
     })
     $.when(ajax1).done(getData())
     //点击事件调用c/s函数
-    $('.count li').on('click',function () {
-        BtnClick()
-    })
-    function BtnClick (){
+    for(let i=1;i<=3;i++){
+        $(`.count>ul>:nth-child(${i})`).on('click',function () {
+            BtnClick(i)
+        })
+    }
+
+    function BtnClick (x){
         if (typeof jsEvent == "undefined") {
-            //alert("jsEvent参数未初始化")
+            //alert(`jsEvent参数未初始化${x}`)
             return;
         }
         jsEvent.MessageText = "收到js消息";
-        jsEvent.ShowAlarmList();
+        jsEvent.ShowAlarmList(x);
     }
 
     //天气预报  免费接口
@@ -578,7 +610,7 @@
 
     }
 
-        //消息接口
+    //消息接口
     //http://36.110.66.214:50001/zzcismp/alarm/getProjDevAlarmData.shtml?offset=0&limit=10&buildcode=0&handle_status=-1
 
 

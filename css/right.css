@@ -302,7 +302,7 @@ body {
 /*最下边文字消息*/
 #message{
     position: relative;
-    height: 130px;
+    height: 125px;
     overflow: hidden;
     color: #eee;
     font-size: 12px;
@@ -316,18 +316,17 @@ body {
     margin-right: auto;
     left: 0;
     right: 0;
-    background: -webkit-linear-gradient(rgba(20, 28, 57, 0.7), rgba(0, 0, 0, 0),rgba(20, 28, 57, 0.7)); /* Safari 5.1 - 6.0 */
-    background: -o-linear-gradient(rgba(20, 28, 57, 0.7), rgba(0, 0, 0, 0),rgba(20, 28, 57, 0.7)); /* Opera 11.1 - 12.0 */
-    background: -moz-linear-gradient(rgba(20, 28, 57, 0.7), rgba(0, 0, 0, 0),rgba(20, 28, 57, 0.7)); /* Firefox 3.6 - 15 */
-    background: linear-gradient(rgba(20, 28, 57, 0.7), rgba(0, 0, 0, 0),rgba(0, 0, 0, 0),rgba(20, 28, 57, 0.7)); /* 标准的语法 */
+    background: linear-gradient(rgba(20, 28, 57, 0.8), rgba(0, 0, 0, 0) 45%,rgba(0, 0, 0, 0) 65%,rgba(20, 28, 57, 0.8)); /* 标准的语法 */
 }
 #message li{
     /*position: relative;*/
     padding: 6px 0 6px 10px;
     cursor: default;
+    clear: both;
+    overflow: hidden;
 }
 #message ul{
-    transition: 1s;
+    transition: 1.5s;
 }
 .tooltip {
     position: absolute;
@@ -343,12 +342,19 @@ body {
     border-radius: 5px 5px 5px 5px;
 }
 #message li>:nth-child(1){
+    float:left;
     display: inline-block;
-    width: 57%;
+    width: calc(100% - 140px);
     height: 13px;
     overflow: hidden;
     text-overflow:ellipsis;
     white-space: nowrap;
+}
+#message li>:nth-child(2){
+    float:right;
+    display: inline-block;
+    height: 13px;
+    padding-right: 10px;
 }
 
 
