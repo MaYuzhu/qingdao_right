@@ -512,46 +512,57 @@
                 }
 
                 //消息滚动
+                //textMove()
+                var index = 0
+                var timeTextMove
+                function textMove() {
+                    if(index >= liC/2){
+                        index = 0
+                        $('#message ul').css({
+                            "transition": 'none',
+                            "transform": `translate(0,-${index*25}px)`
+                        })
+                    }
+                    setTimeout(function () {
+                        ++index
+                        $('#message ul').css({
+                            "transition": `.5s`,
+                            "transform": `translate(0,-${index*25}px)`
+                        })
+                    },20)
+
+                    timeTextMove = setTimeout(textMove,500)
+                }
+
                 /*textMove()
                 var index = 0
                 var timeTextMove
                 function textMove() {
-                    index++
-                    if(index == liC - 4){
-                        index = 0
-                    }
-                    setTimeout(function () {
-                        $('#message ul').css({"transition": `none`})
-                        $('#message ul').css({"transform": `translate(0,-${index*27}px)`})
-                    },100)
-
-                    timeTextMove = setTimeout(textMove,1000)
-                }*/
-
-                textMove()
-                var index = 0
-                var timeTextMove
-                function textMove() {
                     timeTextMove = setInterval(function () {
-                        if(index == 10){
+                        if(index >= 10){
                             index = 0
-                            $('#message ul').css({"transition": 'none',
-                                "transform": `translate(0,-${index*25}px)`})
+                            $('#message ul').css({
+                                "transition": 'none',
+                                "transform": `translate(0,-${index*25}px)`
+                            })
                         }
                         setTimeout(function () {
                             index++
-                            $('#message ul').css({"transition": `1.5s`,
-                                "transform": `translate(0,-${index*25}px)`})
+                            $('#message ul').css({
+                                "transition": `.5s`,
+                                "transform": `translate(0,-${index*25}px)`
+                            })
                         },20)
-                    },1500)
-                }
+                    },500)
+                }*/
+
                 $('#message').hover(function(){
                     //console.log('移入');
-                    clearTimeout(timeTextMove)
+                    clearInterval(timeTextMove)
                     $('.mask').hide()
                 },function(){
                     //console.log('移出');
-                    textMove()
+                    //textMove()
                     $('.mask').show()
                 });
             },

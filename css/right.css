@@ -320,13 +320,13 @@ body {
 }
 #message li{
     /*position: relative;*/
-    padding: 6px 0 6px 10px;
+    padding: 6px 1% 6px 3%;
     cursor: default;
     clear: both;
     overflow: hidden;
 }
 #message ul{
-    transition: 1.5s;
+    transition: .5s;
 }
 .tooltip {
     position: absolute;
@@ -357,9 +357,24 @@ body {
     padding-right: 10px;
 }
 
+@keyframes rowup {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    100% {
+        -webkit-transform: translate3d(0, -250px, 0);
+        transform: translate3d(0, -250px, 0);
+    }
+}
 
-
-
+.rowup{
+    -webkit-animation: 20s rowup linear infinite normal;
+    animation: 20s rowup linear infinite normal;
+}
+#message:hover .rowup{
+    animation-play-state:paused;
+}
 
 
 
