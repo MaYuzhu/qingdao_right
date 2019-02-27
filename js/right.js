@@ -461,115 +461,134 @@
                 // alert('fail');
             }
         })
-        setTimeout(getData,1000*60*30)
 
         //异常统计下 消息展示
-        $.ajax({
-            type: 'get',
-            async: true,
-            cache: true,
-            //data: {projectCode:37020010},
-            url: url + '/zzcismp/alarm/getProjDevAlarmData.shtml?offset=0&limit=10&buildcode=0&handle_status=-1',
-            dataType: 'jsonp',
-            jsonp: "callback",
-            success: function (json) {
-                //console.log(json.rows)
-                var message_length = json.rows.length
-                $('#message ul').empty()
-                for(var i=0;i<message_length;i++){
-                    $('#message>ul').append(`<li 
-                        title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time.substring(0,10)}/${json.rows[i].alarm_time.substring(11)}>
-                        <span>${json.rows[i].alarm_reason}</span>
-                        <span>${json.rows[i].alarm_time}</span>
-                    </li>`)
-                }
-                for(var i=0;i<message_length;i++){
-                    $('#message>ul').append(`<li title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time}>
-                        <span>${json.rows[i].alarm_reason}</span>
-                        <span>${json.rows[i].alarm_time}</span>
-                    </li>`)
-                }
-                //消息移入
-                var liC = $("#message>ul>li").length
-                //console.log(liC)
-                for(let i=1;i<=liC;i++){
-                    //textTip($(`#message>ul>:nth-child(${i})`),$(`#message>ul>:nth-child(${i})`).text())
-                }
-                function textTip(dom,string) {
-                    dom.hover(function(event){
-                        var tooltipHtml = `<div id='tooltip' class='tooltip'>${string}</div>`;
-                        $(this).append(tooltipHtml);
-                        $("#tooltip").css({
-                            "opacity": 1,
-                            "background":"rgba(20,20,20,.9)",
-                            "top": (event.pageY)-660 + "px",
-                            "left": 20 + "px",
-                            "z-index":"9999"
-                        }).show("fast");
-                    },function(){
-                        $("#tooltip").remove();
-                    })
-                }
-
-                //消息滚动
-                //textMove()
-                var index = 0
-                var timeTextMove
-                function textMove() {
-                    if(index >= liC/2){
-                        index = 0
-                        $('#message ul').css({
-                            "transition": 'none',
-                            "transform": `translate(0,-${index*25}px)`
+        messageUpdate()
+        function messageUpdate() {
+            $.ajax({
+                type: 'get',
+                async: true,
+                cache: true,
+                //data: {projectCode:37020010},
+                url: url + '/zzcismp/alarm/getProjDevAlarmData.shtml?offset=0&limit=10&buildcode=0&handle_status=-1',
+                dataType: 'jsonp',
+                jsonp: "callback",
+                success: function (json) {
+                    //console.log(json.rows)
+                    var message_length = json.rows.length
+                    $('#message ul').empty()
+                    for(var i=0;i<message_length;i++){
+                        $('#message>ul').append(`<li 
+                    title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time.substring(0,10)}/${json.rows[i].alarm_time.substring(11)}>
+                            <span>${json.rows[i].alarm_reason}</span>
+                            <span>${json.rows[i].alarm_time}</span>
+                        </li>`)
+                    }
+                    for(var i=0;i<message_length;i++){
+                        $('#message>ul').append(`<li title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time}>
+                            <span>${json.rows[i].alarm_reason}</span>
+                            <span>${json.rows[i].alarm_time}</span>
+                        </li>`)
+                    }
+                    /*for(var i=0;i<10;i++){
+                        $('#message>ul').append(`<li>
+                            <span>第${i+1}行</span>
+                            <span>2019.2.27</span>
+                        </li>`)
+                    }
+                    for(var i=0;i<10;i++){
+                        $('#message>ul').append(`<li>
+                            <span>第${i+1}行</span>
+                            <span>2019.2.27</span>
+                        </li>`)
+                    }*/
+                    //消息移入
+                    var liC = $("#message>ul>li").length
+                    //console.log(liC)
+                    for(let i=1;i<=liC;i++){
+                        //textTip($(`#message>ul>:nth-child(${i})`),$(`#message>ul>:nth-child(${i})`).text())
+                    }
+                    function textTip(dom,string) {
+                        dom.hover(function(event){
+                            var tooltipHtml = `<div id='tooltip' class='tooltip'>${string}</div>`;
+                            $(this).append(tooltipHtml);
+                            $("#tooltip").css({
+                                "opacity": 1,
+                                "background":"rgba(20,20,20,.9)",
+                                "top": (event.pageY)-660 + "px",
+                                "left": 20 + "px",
+                                "z-index":"9999"
+                            }).show("fast");
+                        },function(){
+                            $("#tooltip").remove();
                         })
                     }
-                    setTimeout(function () {
-                        ++index
-                        $('#message ul').css({
-                            "transition": `.5s`,
-                            "transform": `translate(0,-${index*25}px)`
-                        })
-                    },20)
 
-                    timeTextMove = setTimeout(textMove,500)
-                }
-
-                /*textMove()
-                var index = 0
-                var timeTextMove
-                function textMove() {
-                    timeTextMove = setInterval(function () {
-                        if(index >= 10){
+                    //消息滚动
+                    //textMove()
+                    var index = 0
+                    var timeTextMove
+                    var minSetTime
+                    function textMove() {
+                        clearTimeout(minSetTime)
+                        if(index >= liC/2){
                             index = 0
                             $('#message ul').css({
                                 "transition": 'none',
-                                "transform": `translate(0,-${index*25}px)`
+                                "transform": 'translate3d(0,0,0)'
                             })
                         }
-                        setTimeout(function () {
-                            index++
+                        minSetTime = setTimeout(function () {
+                            index += 1
                             $('#message ul').css({
                                 "transition": `.5s`,
-                                "transform": `translate(0,-${index*25}px)`
+                                "transform": `translate3d(0,-${index*25}px,0)`
                             })
                         },20)
-                    },500)
-                }*/
 
-                $('#message').hover(function(){
-                    //console.log('移入');
-                    clearInterval(timeTextMove)
-                    $('.mask').hide()
-                },function(){
-                    //console.log('移出');
-                    //textMove()
-                    $('.mask').show()
-                });
-            },
-            error: function () {
-                // alert('fail');
-            }
-        })
+                        timeTextMove = setTimeout(textMove,500)
+
+                    }
+
+                    /*textMove()
+                    var index = 0
+                    var timeTextMove
+                    function textMove() {
+                        timeTextMove = setInterval(function () {
+                            if(index >= 10){
+                                index = 0
+                                $('#message ul').css({
+                                    "transition": 'none',
+                                    "transform": `translate(0,-${index*25}px)`
+                                })
+                            }
+                            setTimeout(function () {
+                                index++
+                                $('#message ul').css({
+                                    "transition": `.5s`,
+                                    "transform": `translate(0,-${index*25}px)`
+                                })
+                            },20)
+                        },500)
+                    }*/
+
+                    $('#message').hover(function(){
+                        //console.log('移入');
+                        //clearTimeout(timeTextMove)
+                        $('.mask').hide()
+                    },function(){
+                        //console.log('移出');
+                        //textMove()
+                        $('.mask').show()
+                    });
+                },
+                error: function () {
+                    // alert('fail');
+                }
+            })
+        }
+
+
     }
     let ajax1 = $.ajax({
         type: 'get',
@@ -623,7 +642,6 @@
 
     //消息接口
     //http://36.110.66.214:50001/zzcismp/alarm/getProjDevAlarmData.shtml?offset=0&limit=10&buildcode=0&handle_status=-1
-
 
 
 })(window)
