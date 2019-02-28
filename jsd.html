@@ -9,12 +9,15 @@
           border: 1px solid #ddd;
           margin: 5px;
           min-width: 500px;
-          padding-bottom: 20px;
+          padding-bottom: 0px;
+          color: white;
       }
       .title{
-          background: #c3e8f2;
+          /*background: #c3e8f2;*/
+          background: rgb(47,65,139);
           padding: 3px 16px 5px;
           margin: 0;
+          color: white;
       }
       .wrap ul li,.wrap ul{
           list-style: none;
@@ -23,6 +26,7 @@
       }
       .content{
           position: relative;
+          background: rgb(22,30,62);
       }
       .content .danwei{
           position: absolute;
@@ -34,6 +38,7 @@
           position: absolute;
           top: 10px;
           right: 2.5%;
+          color: white;
       }
       .wrap ul li{
           width: 50px;
@@ -57,13 +62,13 @@
           position: absolute;
           bottom: 8px;
           right: 2%;
-          color: #666;
+          color: #fff;
       }
       .c1 p{
           position: absolute;
           top: -22px;
           left: 15%;
-          color: #666;
+          color: #fff;
           padding: 0;
           margin: 0;
       }
@@ -73,7 +78,9 @@
           height: 50px;
           margin-bottom: -10px;
       }
-
+        .box>div{
+            background: rgb(22,30,62);
+        }
     </style>
 </head>
 <body>
@@ -316,9 +323,10 @@
               jiange = 165
           }
 
-
+          var backgroundColorOption = '#161E3E'
+          var titleColor = '#fff'
           var option08 = {
-              backgroundColor: '#fff',//背景色
+              backgroundColor: backgroundColorOption,//背景色
               title:[
                   {
                       text:data[0].devname,
@@ -326,8 +334,9 @@
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
-                          fontSize:12
-                      }
+                          fontSize:12,
+                          color:titleColor
+                      },
                   },
               ],
               grid:[
@@ -355,7 +364,7 @@
                           interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
-                              color: '#666',
+                              color: titleColor,
                               fontSize:'12'
                           }
                       },
@@ -369,7 +378,7 @@
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
-                          color:'#666'//y轴name颜色
+                          color:titleColor//y轴name颜色
                       },
                       min:'dataMin',
                       max:'dataMax',
@@ -393,7 +402,7 @@
                       axisLabel : {
                           formatter: '{value}',
                           textStyle: {
-                              color: '#999'
+                              color: titleColor
                           }
                       }
                   },
@@ -439,7 +448,7 @@
                   },
           }
           var option07 = {
-              backgroundColor: '#fff',//背景色
+              backgroundColor: backgroundColorOption,//背景色
               title:[
                   {
                       text:data[1].devname,
@@ -447,7 +456,8 @@
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
-                          fontSize:12
+                          fontSize:12,
+                          color:titleColor
                       }
                   },
               ],
@@ -476,7 +486,7 @@
                           interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
-                              color: '#666',
+                              color: titleColor,
                               fontSize:'12'
                           }
                       },
@@ -490,7 +500,7 @@
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
-                          color:'#666'//y轴name颜色
+                          color:titleColor//y轴name颜色
                       },
                       min:'dataMin',
                       max:'dataMax',
@@ -514,7 +524,7 @@
                       axisLabel : {
                           formatter: '{value}',
                           textStyle: {
-                              color: '#999'
+                              color: titleColor
                           }
                       }
                   },
@@ -560,7 +570,7 @@
                   },
           }
           var option06 = {
-              backgroundColor: '#fff',//背景色
+              backgroundColor: backgroundColorOption,//背景色
               title:[
                   {
                       text:data[2].devname,
@@ -568,7 +578,8 @@
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
-                          fontSize:12
+                          fontSize:12,
+                          color:titleColor
                       }
                   },
               ],
@@ -597,7 +608,7 @@
                           interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
-                              color: '#666',
+                              color: titleColor,
                               fontSize:'12'
                           }
                       },
@@ -611,7 +622,7 @@
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
-                          color:'#666'//y轴name颜色
+                          color:titleColor//y轴name颜色
                       },
                       min:'dataMin',
                       max:'dataMax',
@@ -635,7 +646,7 @@
                       axisLabel : {
                           formatter: '{value}',
                           textStyle: {
-                              color: '#999'
+                              color: titleColor
                           }
                       }
                   },
@@ -681,7 +692,7 @@
                   },
           }
           var option05 = {
-              backgroundColor: '#fff',//背景色
+              backgroundColor: backgroundColorOption,//背景色
               title:[
                   {
                       text:data[3].devname,
@@ -689,7 +700,8 @@
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
-                          fontSize:12
+                          fontSize:12,
+                          color:titleColor
                       }
                   },
               ],
@@ -718,7 +730,7 @@
                           interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
-                              color: '#666',
+                              color: titleColor,
                               fontSize:'12'
                           }
                       },
@@ -732,7 +744,7 @@
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
-                          color:'#666'//y轴name颜色
+                          color:titleColor//y轴name颜色
                       },
                       min:'dataMin',
                       max:'dataMax',
@@ -756,7 +768,7 @@
                       axisLabel : {
                           formatter: '{value}',
                           textStyle: {
-                              color: '#999'
+                              color: titleColor
                           }
                       }
                   },
@@ -802,7 +814,7 @@
                   },
           }
           var option04 = {
-              backgroundColor: '#fff',//背景色
+              backgroundColor: backgroundColorOption,//背景色
               title:[
                   {
                       text:data[4].devname,
@@ -810,7 +822,8 @@
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
-                          fontSize:12
+                          fontSize:12,
+                          color:titleColor
                       }
                   },
               ],
@@ -839,7 +852,7 @@
                           interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
-                              color: '#666',
+                              color: titleColor,
                               fontSize:'12'
                           }
                       },
@@ -853,7 +866,7 @@
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
-                          color:'#666'//y轴name颜色
+                          color:titleColor//y轴name颜色
                       },
                       min:'dataMin',
                       max:'dataMax',
@@ -877,7 +890,7 @@
                       axisLabel : {
                           formatter: '{value}',
                           textStyle: {
-                              color: '#999'
+                              color: titleColor
                           }
                       }
                   },
@@ -923,7 +936,7 @@
                   },
           }
           var option03 = {
-              backgroundColor: '#fff',//背景色
+              backgroundColor: backgroundColorOption,//背景色
               title:[
                   {
                       text:data[5].devname,
@@ -931,7 +944,8 @@
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
-                          fontSize:12
+                          fontSize:12,
+                          color:titleColor
                       }
                   },
               ],
@@ -960,7 +974,7 @@
                           interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
-                              color: '#666',
+                              color: titleColor,
                               fontSize:'12'
                           }
                       },
@@ -974,7 +988,7 @@
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
-                          color:'#666'//y轴name颜色
+                          color:titleColor//y轴name颜色
                       },
                       min:'dataMin',
                       max:'dataMax',
@@ -998,7 +1012,7 @@
                       axisLabel : {
                           formatter: '{value}',
                           textStyle: {
-                              color: '#999'
+                              color: titleColor
                           }
                       }
                   },
@@ -1044,7 +1058,7 @@
                   },
           }
           var option02 = {
-              backgroundColor: '#fff',//背景色
+              backgroundColor: backgroundColorOption,//背景色
               title:[
                   {
                       text:data[6].devname,
@@ -1052,7 +1066,8 @@
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
-                          fontSize:12
+                          fontSize:12,
+                          color:titleColor
                       }
                   },
               ],
@@ -1081,7 +1096,7 @@
                           interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
-                              color: '#666',
+                              color: titleColor,
                               fontSize:'12'
                           }
                       },
@@ -1095,7 +1110,7 @@
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
-                          color:'#666'//y轴name颜色
+                          color:titleColor//y轴name颜色
                       },
                       min:'dataMin',
                       max:'dataMax',
@@ -1119,7 +1134,7 @@
                       axisLabel : {
                           formatter: '{value}',
                           textStyle: {
-                              color: '#999'
+                              color: titleColor
                           }
                       }
                   },
@@ -1165,7 +1180,7 @@
                   },
           }
           var option01 = {
-              backgroundColor: '#fff',//背景色
+              backgroundColor: backgroundColorOption,//背景色
               title:[
                   {
                       text:data[7].devname,
@@ -1173,7 +1188,8 @@
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
-                          fontSize:12
+                          fontSize:12,
+                          color:titleColor
                       }
                   },
               ],
@@ -1202,7 +1218,7 @@
                           interval:jiange,//隔几个显示刻度标签
                           show: true,
                           textStyle: {
-                              color: '#666',
+                              color: titleColor,
                               fontSize:'12'
                           }
                       },
@@ -1216,7 +1232,7 @@
                       //boundaryGap:['80%', '80%'],
                       //data:[-0.006,0.006],
                       nameTextStyle:{
-                          color:'#666'//y轴name颜色
+                          color:titleColor//y轴name颜色
                       },
                       min:'dataMin',
                       max:'dataMax',
@@ -1240,7 +1256,7 @@
                       axisLabel : {
                           formatter: '{value}',
                           textStyle: {
-                              color: '#999'
+                              color: titleColor
                           }
                       }
                   },

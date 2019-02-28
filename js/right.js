@@ -277,6 +277,7 @@
     window.addEventListener('resize',function () {
         location.reload()  //窗口大小改变强制刷新
     })
+
     function getNowFormatDate() {
         var date = new Date(new Date()-6*24*3600*1000);
         var seperator1 = "-";
@@ -478,14 +479,15 @@
                     var message_length = json.rows.length
                     $('#message ul').empty()
                     for(var i=0;i<message_length;i++){
-                        $('#message>ul').append(`<li 
-                    title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time.substring(0,10)}/${json.rows[i].alarm_time.substring(11)}>
+                        $('#message>ul').append(`<li class="tooltip"
+                        title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time.substring(0,10)}/${json.rows[i].alarm_time.substring(11)}>
                             <span>${json.rows[i].alarm_reason}</span>
                             <span>${json.rows[i].alarm_time}</span>
                         </li>`)
                     }
                     for(var i=0;i<message_length;i++){
-                        $('#message>ul').append(`<li title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time}>
+                        $('#message>ul').append(`<li class="tooltip"
+                        title=${json.rows[i].alarm_reason}${json.rows[i].alarm_time}>
                             <span>${json.rows[i].alarm_reason}</span>
                             <span>${json.rows[i].alarm_time}</span>
                         </li>`)
@@ -502,28 +504,10 @@
                             <span>2019.2.27</span>
                         </li>`)
                     }*/
+                    //$('.tooltip').toolTip();
+
                     //消息移入
                     var liC = $("#message>ul>li").length
-                    //console.log(liC)
-                    for(let i=1;i<=liC;i++){
-                        //textTip($(`#message>ul>:nth-child(${i})`),$(`#message>ul>:nth-child(${i})`).text())
-                    }
-                    function textTip(dom,string) {
-                        dom.hover(function(event){
-                            var tooltipHtml = `<div id='tooltip' class='tooltip'>${string}</div>`;
-                            $(this).append(tooltipHtml);
-                            $("#tooltip").css({
-                                "opacity": 1,
-                                "background":"rgba(20,20,20,.9)",
-                                "top": (event.pageY)-660 + "px",
-                                "left": 20 + "px",
-                                "z-index":"9999"
-                            }).show("fast");
-                        },function(){
-                            $("#tooltip").remove();
-                        })
-                    }
-
                     //消息滚动
                     //textMove()
                     var index = 0
@@ -587,7 +571,6 @@
                 }
             })
         }
-
 
     }
     let ajax1 = $.ajax({

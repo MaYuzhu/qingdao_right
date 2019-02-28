@@ -328,19 +328,7 @@ body {
 #message ul{
     transition: .5s;
 }
-.tooltip {
-    position: absolute;
-    display: block;
-    z-index: 9900000;
-    outline: none;
-    padding: 5px;
-    border-width: 1px;
-    border-style: solid;
-    border-radius: 5px;
-    -moz-border-radius: 5px 5px 5px 5px;
-    -webkit-border-radius: 5px 5px 5px 5px;
-    border-radius: 5px 5px 5px 5px;
-}
+
 #message li>:nth-child(1){
     float:left;
     display: inline-block;
