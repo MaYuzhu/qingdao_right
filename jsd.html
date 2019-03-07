@@ -138,6 +138,7 @@
       var url = 'http://36.110.66.214:50001'
       var flag = 1
 
+      var isTitle = false //标题是否显示  最后确定始终显示
       //根据url参数显示不同的通道
       ;(function($){
           $.getUrlParam = function(name)
@@ -147,6 +148,14 @@
               if (r!=null) return unescape(r[2]); return null;
           }
       })(jQuery);
+      var bodyW
+      $(document).ready(function(){
+          //alert($(window).width())
+          bodyW = $(window).width()
+      })
+      window.addEventListener('resize',function () {
+          location.reload()  //窗口大小改变强制刷新
+      })
       $(function(){
           for(var i=0;i<$('.c1>.box>div').length;i++){
               $('.c1>.box>div')[i].style.display = 'none'
@@ -359,8 +368,13 @@
                       },
                   },
               ],
-              grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+              grid:[{
+                    x:'20%',//'125px',
+                    y:'20%',
+                    width: '78%',
+                    height:'50%',
+                    top:'10%',
+                  },//x:'18%
               ],
               tooltip: {
                   trigger: 'axis',
@@ -482,7 +496,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+                  {x:'20%',y:'20%',width: '78%',height:'50%',top:'10%',},//x:'18%
               ],
               tooltip: {
                   trigger: 'axis',
@@ -604,7 +618,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+                  {x:'20%',y:'20%',width: '78%',height:'50%',top:'10%',},//x:'18%
               ],
               tooltip: {
                   trigger: 'axis',
@@ -726,7 +740,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+                  {x:'20%',y:'20%',width: '78%',height:'50%',top:'10%',},//x:'18%
               ],
               tooltip: {
                   trigger: 'axis',
@@ -848,7 +862,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+                  {x:'20%',y:'20%',width: '78%',height:'50%',top:'10%',},//x:'18%
               ],
               tooltip: {
                   trigger: 'axis',
@@ -970,7 +984,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+                  {x:'20%',y:'20%',width: '78%',height:'50%',top:'10%',},//x:'18%
               ],
               tooltip: {
                   trigger: 'axis',
@@ -1092,7 +1106,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+                  {x:'20%',y:'20%',width: '78%',height:'50%',top:'10%',},//x:'18%
               ],
               tooltip: {
                   trigger: 'axis',
@@ -1204,7 +1218,7 @@
               title:[
                   {
                       text:data[7].devname,
-                      left:'7%',
+                      left:'7%',//left:'7%',
                       top:'10%',
                       textAlign:'center',
                       textStyle:{
@@ -1214,7 +1228,7 @@
                   },
               ],
               grid:[
-                  {x:'18%',y:'20%',width:'80%',height:'50%',top:'10%',},
+                  {x:'20%',y:'20%',width: '78%',height:'50%',top:'10%',},//x:'18%
               ],
               tooltip: {
                   trigger: 'axis',
