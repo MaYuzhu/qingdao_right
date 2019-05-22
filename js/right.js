@@ -326,6 +326,10 @@
             dataType: 'jsonp',
             jsonp: "callback",
             success: function (json) {
+                //console.log(json)
+                if(!json){
+                    return
+                }
                 if(json[0].alarm_info.filter(a=>a.type=='L')[0].level===1){
                     $('.huan .wind').addClass('green_qiu')
                 }else if(json[0].alarm_info.filter(a=>a.type=='L')[0].level===2){
@@ -571,6 +575,8 @@
                 }
             })
         }
+        //天气预报
+        tianqi()
 
     }
     let ajax1 = $.ajax({
@@ -601,16 +607,19 @@
     }
 
     //天气预报  免费接口
-    tianqi()
+    //tianqi()
     function tianqi(){
         $.ajax({
-            type: 'get',
+            type: "GET",
             async: true,
             cache: true,
             //url:'http://www.weather.com.cn/data/sk/101110101.html',
-            url: 'http://t.weather.sojson.com/api/weather/city/101120201',
-            dataType: 'json',
+            //url: 'http://t.weather.sojson.com/api/weather/city/101120201', //用的这个 http://192.168.20.17:8280
+            url: url + '/zzcismp/base/weather.shtml', //后台代理后的
+            dataType: 'jsonp',
+
             success: function (json) {
+                //var result = JSON.stringify(json)
                 //console.log(json)
                 var shi = json.data.shidu
                 $('.tianqi_shi').text(shi)
